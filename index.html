@@ -1,2590 +1,1623 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HAIRGATOR -Blog Auto- | 헤어케어 전문 블로그 자동화 시스템</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    
-    <style>
-/* HAIRGATOR - Modern White Theme CSS */
-/* 모던하고 세련된 화이트 테마 - 완전 새로운 디자인 + 멋진 헤더 */
-
-:root {
-    /* 모던 컬러 팔레트 */
-    --primary: #6366f1;
-    --primary-hover: #5855eb;
-    --primary-light: #eef2ff;
-    --secondary: #64748b;
-    --accent: #06b6d4;
-    --success: #10b981;
-    --warning: #f59e0b;
-    --error: #ef4444;
-    --info: #3b82f6;
-    
-    /* 그레이스케일 */
-    --white: #ffffff;
-    --gray-50: #f8fafc;
-    --gray-100: #f1f5f9;
-    --gray-200: #e2e8f0;
-    --gray-300: #cbd5e1;
-    --gray-400: #94a3b8;
-    --gray-500: #64748b;
-    --gray-600: #475569;
-    --gray-700: #334155;
-    --gray-800: #1e293b;
-    --gray-900: #0f172a;
-    
-    /* 텍스트 */
-    --text-primary: var(--gray-900);
-    --text-secondary: var(--gray-600);
-    --text-muted: var(--gray-500);
-    --text-inverse: var(--white);
-    
-    /* 배경 */
-    --bg-primary: var(--white);
-    --bg-secondary: var(--white);
-    --bg-tertiary: var(--gray-50);
-    
-    /* 보더 */
-    --border-color: var(--gray-200);
-    --border-focus: var(--primary);
-    
-    /* 그림자 */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    
-    /* 반지름 */
-    --radius-sm: 6px;
-    --radius-md: 8px;
-    --radius-lg: 12px;
-    --radius-xl: 16px;
-    
-    /* 폰트 */
-    --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-    --font-serif: 'Playfair Display', 'Times New Roman', serif;
-    --font-mono: 'Courier New', 'Monaco', monospace;
-    --font-weight-normal: 400;
-    --font-weight-medium: 500;
-    --font-weight-semibold: 600;
-    --font-weight-bold: 700;
-}
-
-/* ============================================================================ */
-/* 기본 리셋 및 글로벌 스타일 */
-/* ============================================================================ */
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: var(--font-sans);
-    background: var(--white);
-    color: var(--text-primary);
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    font-size: 14px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/* ============================================================================ */
-/* 헤더 - 멋진 화이트테마 + HAIRGATOR -Blog Auto- */
-/* ============================================================================ */
-
-.header {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    border-bottom: 3px solid #e2e8f0;
-    padding: 1.5rem 2rem;
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 2rem;
-}
-
-/* 헤더 배경 장식 */
-.header::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.03) 0%, transparent 70%);
-    animation: float 20s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(180deg); }
-}
-
-/* 브랜드 로고 */
-.brand-logo {
-    position: relative;
-    z-index: 2;
-    margin-bottom: 0.5rem;
-}
-
-.brand-main {
-    font-family: var(--font-serif);
-    font-size: 3.5rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #1e293b 0%, #64748b 50%, #1e293b 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    letter-spacing: -0.02em;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
-    display: inline-block;
-}
-
-.brand-main::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, #6366f1, transparent);
-    border-radius: 2px;
-}
-
-.brand-sub {
-    font-family: var(--font-mono);
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: #64748b;
-    letter-spacing: 0.1em;
-    margin-left: 0.5rem;
-    position: relative;
-    top: -0.3rem;
-    opacity: 0.8;
-}
-
-/* 브랜드 태그라인 */
-.brand-tagline {
-    position: relative;
-    z-index: 2;
-    font-family: var(--font-sans);
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: #475569;
-    margin-bottom: 1rem;
-    letter-spacing: 0.02em;
-    opacity: 0.9;
-}
-
-/* 기능 배지들 */
-.brand-features {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.feature-badge {
-    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-    border: 1.5px solid #e2e8f0;
-    color: #334155;
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.feature-badge::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
-    transition: left 0.5s ease;
-}
-
-.feature-badge:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.15);
-    border-color: #6366f1;
-}
-
-.feature-badge:hover::before {
-    left: 100%;
-}
-
-/* ============================================================================ */
-/* 컨테이너 레이아웃 */
-/* ============================================================================ */
-
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: grid;
-    grid-template-columns: 300px 1fr 320px;
-    gap: 2rem;
-    min-height: calc(100vh - 200px);
-}
-
-/* ============================================================================ */
-/* 사이드바 */
-/* ============================================================================ */
-
-.sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.sidebar section {
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--border-color);
-}
-
-.sidebar h3 {
-    font-size: 1.1rem;
-    font-weight: var(--font-weight-semibold);
-    margin: 0 0 1rem 0;
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-/* ============================================================================ */
-/* 참고 자료 및 경험 섹션 */
-/* ============================================================================ */
-
-.reference-section,
-.experience-section {
-    margin-top: 1.5rem;
-    padding: 1rem;
-    background: var(--gray-50);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border-color);
-}
-
-.reference-section h4,
-.experience-section h4 {
-    font-size: 1rem;
-    font-weight: var(--font-weight-semibold);
-    color: var(--text-primary);
-    margin: 0 0 1rem 0;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.file-list {
-    margin-top: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.file-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem;
-    background: var(--white);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-    font-size: 0.875rem;
-}
-
-.file-name {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--text-primary);
-}
-
-.file-size {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-}
-
-.remove-file-btn {
-    background: var(--error);
-    color: var(--white);
-    border: none;
-    padding: 0.25rem 0.5rem;
-    border-radius: var(--radius-sm);
-    font-size: 0.75rem;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.remove-file-btn:hover {
-    background: #dc2626;
-}
-
-/* ============================================================================ */
-/* AI 서비스 스타일 */
-/* ============================================================================ */
-.ai-service-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    margin-bottom: 0.5rem;
-}
-
-.service-info {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.service-name {
-    font-weight: var(--font-weight-medium);
-}
-
-.status-badge {
-    padding: 0.25rem 0.75rem;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    font-weight: var(--font-weight-medium);
-}
-
-.add-sample-btn {
-    background: var(--primary);
-    color: var(--white);
-    border: none;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: all 0.2s;
-}
-
-.add-sample-btn:hover {
-    background: var(--primary-hover);
-    transform: scale(1.1);
-}
-
-.plus-icon {
-    display: block;
-    line-height: 1;
-}
-
-/* 말투 학습 스타일 */
-.writing-style-info {
-    margin-top: 1rem;
-    padding: 1rem;
-    background: var(--gray-50);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border-color);
-}
-
-.style-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-}
-
-.style-title {
-    font-weight: var(--font-weight-semibold);
-    color: var(--text-primary);
-}
-
-.sample-count {
-    background: var(--primary);
-    color: var(--white);
-    padding: 0.25rem 0.5rem;
-    border-radius: 12px;
-    font-size: 0.75rem;
-}
-
-.style-summary {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    line-height: 1.4;
-}
-
-/* ============================================================================ */
-/* 메인 에디터 */
-/* ============================================================================ */
-
-.main-editor {
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--border-color);
-    overflow: hidden;
-}
-
-/* ============================================================================ */
-/* 탭 네비게이션 */
-/* ============================================================================ */
-
-.tab-nav {
-    display: flex;
-    background: var(--white);
-    border-bottom: 1px solid var(--border-color);
-    padding: 0;
-}
-
-.editor-tab {
-    flex: 1;
-    padding: 1rem 1.5rem;
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    font-weight: var(--font-weight-medium);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border-bottom: 2px solid transparent;
-    font-size: 0.95rem;
-}
-
-.editor-tab:hover {
-    background: var(--gray-50);
-    color: var(--text-primary);
-}
-
-.editor-tab.active {
-    background: var(--white);
-    color: var(--primary);
-    border-bottom-color: var(--primary);
-}
-
-/* ============================================================================ */
-/* 탭 컨텐츠 */
-/* ============================================================================ */
-
-.tab-content {
-    padding: 2rem;
-    display: none;
-}
-
-.tab-content.active {
-    display: block;
-}
-
-/* ============================================================================ */
-/* 폼 요소 */
-/* ============================================================================ */
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: var(--font-weight-medium);
-    color: var(--text-primary);
-    font-size: 0.95rem;
-}
-
-.form-input,
-.form-select,
-.form-textarea {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 2px solid var(--border-color);
-    border-radius: var(--radius-md);
-    font-size: 0.95rem;
-    font-family: var(--font-sans);
-    background: var(--white);
-    color: var(--text-primary);
-    transition: all 0.2s ease;
-}
-
-.form-input:focus,
-.form-select:focus,
-.form-textarea:focus {
-    outline: none;
-    border-color: var(--border-focus);
-    box-shadow: 0 0 0 3px var(--primary-light);
-}
-
-.form-textarea {
-    resize: vertical;
-    min-height: 120px;
-    line-height: 1.6;
-}
-
-.form-input::placeholder,
-.form-textarea::placeholder {
-    color: var(--text-muted);
-}
-
-/* ============================================================================ */
-/* 버튼 */
-/* ============================================================================ */
-
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: var(--radius-md);
-    font-size: 0.95rem;
-    font-weight: var(--font-weight-medium);
-    font-family: var(--font-sans);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-decoration: none;
-    white-space: nowrap;
-}
-
-.btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.btn-primary {
-    background: var(--primary);
-    color: var(--white);
-    box-shadow: var(--shadow-sm);
-}
-
-.btn-primary:hover:not(:disabled) {
-    background: var(--primary-hover);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-}
-
-.btn-secondary {
-    background: var(--white);
-    color: var(--text-secondary);
-    border: 2px solid var(--border-color);
-}
-
-.btn-secondary:hover:not(:disabled) {
-    background: var(--gray-50);
-    color: var(--text-primary);
-    border-color: var(--gray-300);
-}
-
-.btn-success {
-    background: var(--success);
-    color: var(--white);
-    box-shadow: var(--shadow-sm);
-}
-
-.btn-success:hover:not(:disabled) {
-    background: #059669;
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-}
-
-.btn-warning {
-    background: var(--warning);
-    color: var(--white);
-    box-shadow: var(--shadow-sm);
-}
-
-.btn-warning:hover:not(:disabled) {
-    background: #d97706;
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-}
-
-.btn-error {
-    background: var(--error);
-    color: var(--white);
-    box-shadow: var(--shadow-sm);
-}
-
-.btn-error:hover:not(:disabled) {
-    background: #dc2626;
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-}
-
-.btn-small {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-}
-
-/* ============================================================================ */
-/* 큐 아이템 */
-/* ============================================================================ */
-
-.queue-item {
-    background: var(--white);
-    border: 2px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    transition: all 0.2s ease;
-    cursor: move;
-}
-
-.queue-item:hover {
-    border-color: var(--primary);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-}
-
-.queue-title {
-    font-size: 1.1rem;
-    font-weight: var(--font-weight-semibold);
-    color: var(--text-primary);
-    line-height: 1.4;
-    margin-bottom: 1rem;
-}
-
-.queue-meta {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
-}
-
-.queue-meta span {
-    font-size: 0.875rem;
-    padding: 0.25rem 0.75rem;
-    border-radius: var(--radius-sm);
-    font-weight: var(--font-weight-medium);
-}
-
-.target-audience {
-    background: var(--primary-light);
-    color: var(--primary);
-}
-
-.queue-status {
-    font-weight: var(--font-weight-medium);
-}
-
-.queue-status.waiting {
-    background: #fef3c7;
-    color: #92400e;
-}
-
-.queue-status.processing {
-    background: #dbeafe;
-    color: #1e40af;
-}
-
-.queue-status.completed {
-    background: #d1fae5;
-    color: #065f46;
-}
-
-.queue-status.failed {
-    background: #fee2e2;
-    color: #991b1b;
-}
-
-.queue-priority {
-    font-size: 0.8rem;
-}
-
-.priority-high {
-    background: #fee2e2;
-    color: #991b1b;
-}
-
-.priority-normal {
-    background: var(--gray-100);
-    color: var(--gray-600);
-}
-
-.priority-low {
-    background: #e0f2fe;
-    color: #0277bd;
-}
-
-/* ============================================================================ */
-/* 품질 메트릭 */
-/* ============================================================================ */
-
-.quality-score {
-    font-size: 3rem;
-    font-weight: var(--font-weight-bold);
-    text-align: center;
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-    border-radius: var(--radius-lg);
-    background: var(--gray-50);
-    color: var(--text-muted);
-}
-
-.quality-score.excellent {
-    background: #d1fae5;
-    color: #065f46;
-}
-
-.quality-score.good {
-    background: #dbeafe;
-    color: #1e40af;
-}
-
-.quality-score.fair {
-    background: #fef3c7;
-    color: #92400e;
-}
-
-.quality-score.poor {
-    background: #fee2e2;
-    color: #991b1b;
-}
-
-.quality-metrics {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.metric-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.metric-item span:first-child {
-    font-size: 0.875rem;
-    font-weight: var(--font-weight-medium);
-    color: var(--text-secondary);
-}
-
-.metric-bar {
-    height: 6px;
-    background: var(--gray-200);
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-    flex: 1;
-}
-
-.metric-fill {
-    height: 100%;
-    transition: width 0.3s ease;
-    border-radius: var(--radius-sm);
-}
-
-.metric-fill.excellent {
-    background: var(--success);
-}
-
-.metric-fill.good {
-    background: var(--info);
-}
-
-.metric-fill.fair {
-    background: var(--warning);
-}
-
-.metric-fill.poor {
-    background: var(--error);
-}
-
-/* ============================================================================ */
-/* 시스템 상태 */
-/* ============================================================================ */
-
-.system-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.stat-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.875rem;
-}
-
-.stat-item span:first-child {
-    color: var(--text-secondary);
-}
-
-.stat-item span:last-child {
-    font-weight: var(--font-weight-semibold);
-    color: var(--text-primary);
-}
-
-/* ============================================================================ */
-/* 모달 */
-/* ============================================================================ */
-
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    opacity: 0;
-    animation: fadeIn 0.2s ease forwards;
-}
-
-.modal-content {
-    background: var(--white);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-xl);
-    width: 90%;
-    max-width: 600px;
-    max-height: 90vh;
-    overflow-y: auto;
-    transform: scale(0.95);
-    animation: scaleIn 0.2s ease forwards;
-    font-family: var(--font-sans);
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 2rem;
-    border-bottom: 1px solid var(--border-color);
-    background: var(--white);
-}
-
-.modal-title {
-    font-size: 1.25rem;
-    font-weight: var(--font-weight-semibold);
-    color: var(--text-primary);
-    margin: 0;
-}
-
-.modal-close {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--text-muted);
-    cursor: pointer;
-    padding: 0.25rem;
-    border-radius: var(--radius-sm);
-    transition: all 0.2s ease;
-}
-
-.modal-close:hover {
-    background: var(--gray-200);
-    color: var(--text-primary);
-}
-
-.modal-body {
-    padding: 2rem;
-}
-
-/* ============================================================================ */
-/* 알림 시스템 */
-/* ============================================================================ */
-
-.notification-container {
-    position: fixed;
-    top: 2rem;
-    right: 2rem;
-    z-index: 2000;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    max-width: 400px;
-}
-
-.notification {
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-xl);
-    border: 1px solid var(--border-color);
-    padding: 1rem 1.5rem;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-}
-
-.notification.show {
-    transform: translateX(0);
-}
-
-.notification.success {
-    border-left: 4px solid var(--success);
-}
-
-.notification.error {
-    border-left: 4px solid var(--error);
-}
-
-.notification.warning {
-    border-left: 4px solid var(--warning);
-}
-
-.notification.info {
-    border-left: 4px solid var(--info);
-}
-
-/* ============================================================================ */
-/* 진행 상태 */
-/* ============================================================================ */
-
-.btn-loader {
-    width: 16px;
-    height: 16px;
-    border: 2px solid transparent;
-    border-top: 2px solid currentColor;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-/* ============================================================================ */
-/* 유틸리티 클래스 */
-/* ============================================================================ */
-
-.flex {
-    display: flex;
-}
-
-.items-center {
-    align-items: center;
-}
-
-.justify-between {
-    justify-content: space-between;
-}
-
-.justify-center {
-    justify-content: center;
-}
-
-.gap-1 {
-    gap: 0.5rem;
-}
-
-.gap-2 {
-    gap: 1rem;
-}
-
-.mt-1 {
-    margin-top: 0.5rem;
-}
-
-.mt-2 {
-    margin-top: 1rem;
-}
-
-.mb-2 {
-    margin-bottom: 1rem;
-}
-
-.text-center {
-    text-align: center;
-}
-
-.hidden {
-    display: none !important;
-}
-
-/* ============================================================================ */
-/* 키프레임 애니메이션 */
-/* ============================================================================ */
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마인드케어 — AI와 전문 상담사가 함께하는 마음 관리 플랫폼</title>
+  <meta name="description" content="24시간 AI 상담, 전문 상담사 매칭, 심리검사, 감정 체크인까지. 마음도 관리가 필요하니까, 마인드케어와 함께 시작하세요.">
+  <meta name="keywords" content="심리상담, 온라인상담, AI상담, 멘탈헬스, 감정관리, 마음관리">
+  <meta property="og:title" content="마인드케어 — 마음 관리 플랫폼">
+  <meta property="og:description" content="AI와 전문 상담사가 함께하는 당신만의 마음 관리">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
+  <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Pretendard', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            sage: {
+              50: '#f0f7f2',
+              100: '#d4eadb',
+              200: '#a8d5b6',
+              300: '#7dbe92',
+              400: '#5fa873',
+              500: '#4a9060',
+              600: '#3a7a4e',
+              700: '#2d5f3d',
+              800: '#1f4329',
+              900: '#142b1b',
+            },
+            lavender: {
+              50: '#f5f0fa',
+              100: '#e6d9f2',
+              200: '#cdb3e5',
+              300: '#b48cd8',
+              400: '#9b66cb',
+              500: '#8250b8',
+            },
+            cream: {
+              50: '#FAF9F6',
+              100: '#F5F3EF',
+              200: '#EDE9E2',
+            },
+          },
+        },
+      },
     }
-}
+  </script>
+  <style>
+    * { word-break: keep-all; }
+    html { scroll-behavior: smooth; }
+    body { background: #FAF9F6; color: #2D2D2D; }
 
-@keyframes scaleIn {
-    to {
-        transform: scale(1);
+    /* Noise overlay */
+    .noise::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     }
-}
 
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(2rem);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
-}
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 100ms; }
+    .reveal-delay-2 { transition-delay: 200ms; }
+    .reveal-delay-3 { transition-delay: 300ms; }
+    .reveal-delay-4 { transition-delay: 400ms; }
 
-/* ============================================================================ */
-/* 반응형 디자인 */
-/* ============================================================================ */
+    /* Float animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    .float { animation: float 6s ease-in-out infinite; }
+    .float-delay { animation: float 6s ease-in-out 2s infinite; }
 
-@media (max-width: 1200px) {
-    .container {
-        grid-template-columns: 280px 1fr 280px;
-        gap: 1.5rem;
+    /* Gradient mesh */
+    .mesh-bg {
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(74, 144, 96, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 80% 20%, rgba(130, 80, 184, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 60% at 50% 80%, rgba(245, 213, 200, 0.1) 0%, transparent 50%);
     }
-}
 
-@media (max-width: 1024px) {
-    .container {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+    /* Glass card */
+    .glass {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.6);
     }
-    
-    .sidebar {
-        order: 2;
-    }
-    
-    .main-editor {
-        order: 1;
-    }
-}
 
-@media (max-width: 768px) {
-    .container {
-        padding: 0 1rem;
+    /* CTA button */
+    .cta-btn {
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    
-    .header {
-        padding: 1.5rem 1rem;
-    }
-    
-    .brand-main {
-        font-size: 2.5rem;
-    }
-    
-    .brand-sub {
-        font-size: 1rem;
-        display: block;
-        margin-left: 0;
-        margin-top: 0.3rem;
-        top: 0;
-    }
-    
-    .brand-tagline {
-        font-size: 1rem;
-    }
-    
-    .brand-features {
-        gap: 0.5rem;
-    }
-    
-    .feature-badge {
-        font-size: 0.8rem;
-        padding: 0.4rem 0.8rem;
-    }
-    
-    .tab-nav {
-        flex-direction: column;
-    }
-    
-    .editor-tab {
-        text-align: center;
-    }
-    
-    .notification-container {
-        top: 1rem;
-        right: 1rem;
-        left: 1rem;
-        max-width: none;
-    }
-}
+    .cta-btn:hover { transform: scale(1.02); }
+    .cta-btn:active { transform: scale(0.98); }
 
-@media (max-width: 480px) {
-    .brand-main {
-        font-size: 2rem;
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
     }
-    
-    .brand-features {
-        flex-direction: column;
-        align-items: center;
+    .modal-overlay.active { display: flex; }
+    .modal-content {
+      background: #FAF9F6;
+      border-radius: 1.5rem;
+      max-width: 520px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
     }
-    
-    .feature-badge {
-        width: fit-content;
+
+    /* Chat bubbles */
+    .chat-bubble-ai {
+      background: #f0f7f2;
+      border-radius: 1.25rem 1.25rem 1.25rem 0.25rem;
     }
-}
-    </style>
+    .chat-bubble-user {
+      background: #4a9060;
+      color: white;
+      border-radius: 1.25rem 1.25rem 0.25rem 1.25rem;
+    }
+
+    /* Mood emoji */
+    .mood-btn {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+    .mood-btn:hover { transform: scale(1.15); }
+    .mood-btn.selected {
+      transform: scale(1.2);
+      box-shadow: 0 0 0 3px rgba(74, 144, 96, 0.3);
+    }
+
+    /* Progress bar */
+    .progress-fill {
+      transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Booking calendar */
+    .cal-day {
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .cal-day:hover:not(.cal-disabled) {
+      background: #d4eadb;
+      border-radius: 0.5rem;
+    }
+    .cal-day.cal-selected {
+      background: #4a9060;
+      color: white;
+      border-radius: 0.5rem;
+    }
+    .cal-day.cal-disabled {
+      color: #ccc;
+      cursor: not-allowed;
+    }
+    .time-slot {
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .time-slot:hover { border-color: #4a9060; background: #f0f7f2; }
+    .time-slot.selected { border-color: #4a9060; background: #4a9060; color: white; }
+
+    /* Marquee */
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-track { animation: marquee 30s linear infinite; }
+
+    /* Nav active */
+    .nav-glass {
+      background: rgba(250, 249, 246, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.6);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+    }
+  </style>
 </head>
-<body>
-    <!-- 헤더 -->
-    <div class="header">
-        <div class="brand-logo">
-            <span class="brand-main">HAIRGATOR</span>
-            <span class="brand-sub">-Blog Auto-</span>
-        </div>
-        <div class="brand-tagline">AI 기반 헤어케어 전문 블로그 자동화 시스템</div>
-        <div class="brand-features">
-            <div class="feature-badge">🤖 AI 콘텐츠 생성</div>
-            <div class="feature-badge">📊 네이버 SEO 최적화</div>
-            <div class="feature-badge">⚡ 실시간 품질 검사</div>
-            <div class="feature-badge">📅 글감 큐 시스템</div>
-        </div>
+<body class="noise font-sans antialiased">
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav id="mainNav" class="fixed top-4 left-1/2 -translate-x-1/2 z-40 nav-glass rounded-full px-6 py-3 flex items-center gap-6 transition-all duration-300">
+    <a href="#" class="flex items-center gap-2 shrink-0">
+      <div class="w-8 h-8 rounded-full bg-sage-500 flex items-center justify-center">
+        <iconify-icon icon="solar:leaf-bold" class="text-white text-sm"></iconify-icon>
+      </div>
+      <span class="font-bold text-sage-800 text-lg hidden sm:block">마인드케어</span>
+    </a>
+    <div class="hidden md:flex items-center gap-5 text-sm text-gray-600">
+      <a href="#features" class="hover:text-sage-600 transition-colors">서비스</a>
+      <a href="#counselors" class="hover:text-sage-600 transition-colors">상담사</a>
+      <a href="#assessment" class="hover:text-sage-600 transition-colors">심리검사</a>
+      <a href="#pricing" class="hover:text-sage-600 transition-colors">요금제</a>
     </div>
+    <button onclick="openModal('bookingModal')" class="cta-btn bg-sage-500 hover:bg-sage-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full flex items-center gap-1.5">
+      상담 예약
+      <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
+    </button>
+  </nav>
 
-    <!-- 메인 컨테이너 -->
-    <div class="container">
-        <!-- 왼쪽 사이드바 -->
-        <div class="sidebar">
-            <!-- 글감 큐 상태 -->
-            <section class="queue-status-section">
-                <h3>📝 글감 큐</h3>
-                <div class="flex justify-between items-center mb-2">
-                    <span>대기중: <strong id="queueWaiting">5</strong></span>
-                    <span>완료: <strong id="queueCompleted">0</strong></span>
-                </div>
-                <div class="flex gap-1">
-                    <button class="btn btn-primary" onclick="processNextInQueue()" title="Ctrl+Enter">
-                        🤖 다음 글 작성
-                    </button>
-                    <button class="btn btn-secondary" onclick="showQueueManager()">
-                        📋 글감 관리
-                    </button>
-                </div>
-            </section>
-
-            <!-- 빠른 글감 추가 -->
-            <section class="quick-add-section mt-2">
-                <h3>➕ 빠른 추가</h3>
-                <div class="form-group">
-                    <input type="text" id="quickTarget" class="form-input" placeholder="타겟 독자 (예: 30대 직장인 여성들)">
-                </div>
-                <div class="form-group">
-                    <input type="text" id="quickTitle" class="form-input" placeholder="글 제목">
-                </div>
-                <div class="form-group">
-                    <input type="text" id="quickKeywords" class="form-input" placeholder="키워드 (쉼표로 구분)">
-                </div>
-                <div class="form-group">
-                    <select id="quickTone" class="form-select">
-                        <option value="친근하고 실용적">친근하고 실용적</option>
-                        <option value="전문적이면서 비즈니스 중심">전문적이면서 비즈니스 중심</option>
-                        <option value="트렌디하고 캐주얼">트렌디하고 캐주얼</option>
-                        <option value="신뢰감 있고 전문적">신뢰감 있고 전문적</option>
-                        <option value="실무적이고 구체적">실무적이고 구체적</option>
-                    </select>
-                </div>
-                
-                <!-- 참고 자료 섹션 -->
-                <div class="reference-section">
-                    <h4>📚 참고 자료</h4>
-                    <div class="form-group">
-                        <label>참고 URL (여러 개 가능)</label>
-                        <textarea id="quickReferenceUrls" class="form-textarea" rows="3" placeholder="https://blog.example.com/haircare-tips
-https://www.ncbi.nlm.nih.gov/pmc/articles/PMC123456/
-https://news.example.com/hair-trend-2024
-
-(한 줄에 하나씩 입력)"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>PDF 파일 (논문, 자료)</label>
-                        <input type="file" id="quickPdfFiles" class="form-input" multiple accept=".pdf" onchange="handlePdfUpload(this)">
-                        <div id="pdfFileList" class="file-list"></div>
-                    </div>
-                </div>
-                
-                <!-- 개인 경험 섹션 -->
-                <div class="experience-section">
-                    <h4>💡 개인 경험 & 노하우</h4>
-                    <div class="form-group">
-                        <textarea id="quickPersonalExperience" class="form-textarea" rows="6" placeholder="실제 경험했던 사례를 구체적으로 작성해주세요:
-
-예시:
-- 재방문율 200% 증가 사례: 2023년 3월부터 상담 방식을 바꿔서 6개월간 추적한 결과, 기존 30% → 90%로 증가
-- 고객 A씨 케이스: 탈모 고민으로 내원 → XX 제품 + YY 관리법 적용 → 3개월 후 모발 밀도 25% 증가 (사진 비교)
-- 실패 사례: ZZ 방법을 시도했지만 효과 없었던 이유는...
-
-구체적인 수치, 기간, 방법을 포함해주세요."></textarea>
-                    </div>
-                </div>
-                
-                <button class="btn btn-success" onclick="addQuickContent()">
-                    ⚡ 큐에 추가
-                </button>
-            </section>
-
-            <!-- 다음 처리 예정 글감 -->
-            <section class="next-item-section mt-2">
-                <h3>⏳ 다음 예정</h3>
-                <div id="nextItemPreview">
-                    <div class="queue-item">
-                        <div class="queue-title">겨울철 건조한 모발 완벽 관리법</div>
-                        <div class="queue-meta">
-                            <span class="target-audience">30대 직장인 여성들</span>
-                            <span class="queue-status waiting">대기중</span>
-                        </div>
-                        <div class="queue-priority priority-normal">
-                            우선순위: 보통
-                        </div>
-                    </div>
-                </div>
-            </section>
+  <!-- ==================== HERO ==================== -->
+  <section class="mesh-bg min-h-[100dvh] flex items-center relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-32">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- Left: Text -->
+        <div class="reveal">
+          <div class="inline-flex items-center gap-2 bg-sage-50 border border-sage-200 rounded-full px-4 py-1.5 text-sage-700 text-sm font-medium mb-6">
+            <iconify-icon icon="solar:shield-check-bold" class="text-sage-500"></iconify-icon>
+            전문 상담사 200+ 등록
+          </div>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-gray-900 mb-6">
+            마음도 관리가<br>
+            <span class="text-sage-500">필요하니까</span>
+          </h1>
+          <p class="text-lg md:text-xl text-gray-500 leading-relaxed max-w-lg mb-8">
+            AI와 전문 상담사가 함께하는 당신만의 마음 관리 플랫폼.
+            일상의 작은 감정부터 깊은 고민까지, 안전하게 돌봐드립니다.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 mb-8">
+            <button onclick="openModal('bookingModal')" class="cta-btn bg-sage-500 hover:bg-sage-600 text-white font-semibold px-8 py-4 rounded-2xl text-lg flex items-center justify-center gap-2 shadow-lg shadow-sage-500/20">
+              <iconify-icon icon="solar:calendar-bold" class="text-xl"></iconify-icon>
+              무료 상담 예약하기
+            </button>
+            <button onclick="openModal('chatModal')" class="cta-btn bg-white hover:bg-gray-50 text-gray-700 font-semibold px-8 py-4 rounded-2xl text-lg flex items-center justify-center gap-2 border border-gray-200">
+              <iconify-icon icon="solar:chat-round-dots-linear" class="text-xl text-sage-500"></iconify-icon>
+              AI 상담 체험
+            </button>
+          </div>
+          <div class="flex items-center gap-6 text-sm text-gray-400">
+            <span class="flex items-center gap-1.5">
+              <iconify-icon icon="solar:users-group-rounded-bold" class="text-sage-400"></iconify-icon>
+              47,200+ 이용자
+            </span>
+            <span class="flex items-center gap-1.5">
+              <iconify-icon icon="solar:star-bold" class="text-amber-400"></iconify-icon>
+              만족도 4.87
+            </span>
+            <span class="flex items-center gap-1.5">
+              <iconify-icon icon="solar:lock-bold" class="text-sage-400"></iconify-icon>
+              100% 비밀 보장
+            </span>
+          </div>
         </div>
-
-        <!-- 메인 에디터 -->
-        <div class="main-editor">
-            <!-- 에디터 탭 네비게이션 -->
-            <div class="tab-nav">
-                <button class="editor-tab active" data-tab="write" onclick="switchTab('write')">✍️ 글쓰기</button>
-                <button class="editor-tab" data-tab="queue" onclick="switchTab('queue')">📝 글감 큐</button>
-                <button class="editor-tab" data-tab="seo" onclick="switchTab('seo')">🔍 SEO</button>
-                <button class="editor-tab" data-tab="image" onclick="switchTab('image')">🖼️ 이미지</button>
-                <button class="editor-tab" data-tab="settings" onclick="switchTab('settings')">⚙️ 설정</button>
+        <!-- Right: Visual -->
+        <div class="reveal reveal-delay-2 relative hidden lg:block">
+          <div class="relative">
+            <div class="absolute -top-8 -left-8 w-72 h-72 bg-sage-200/30 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-8 -right-8 w-64 h-64 bg-lavender-200/20 rounded-full blur-3xl"></div>
+            <!-- Chat preview card -->
+            <div class="glass rounded-3xl p-6 relative z-10">
+              <div class="flex items-center gap-3 mb-5">
+                <div class="w-10 h-10 rounded-full bg-sage-100 flex items-center justify-center">
+                  <iconify-icon icon="solar:chat-round-dots-bold" class="text-sage-600 text-lg"></iconify-icon>
+                </div>
+                <div>
+                  <div class="font-semibold text-sm">AI 마음 상담</div>
+                  <div class="text-xs text-gray-400">지금 대화 가능</div>
+                </div>
+                <div class="ml-auto w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
+              </div>
+              <div class="space-y-3">
+                <div class="chat-bubble-ai px-4 py-3 text-sm max-w-[85%]">
+                  안녕하세요. 오늘 하루는 어떠셨나요? 편하게 이야기해 주세요.
+                </div>
+                <div class="chat-bubble-user px-4 py-3 text-sm max-w-[85%] ml-auto">
+                  요즘 회사 일이 너무 많아서 지쳐요
+                </div>
+                <div class="chat-bubble-ai px-4 py-3 text-sm max-w-[85%]">
+                  많이 힘드시겠어요. 업무량이 과도하면 몸과 마음 모두 지칠 수 있어요. 어떤 부분이 가장 부담이 되시나요?
+                </div>
+              </div>
             </div>
-
-            <!-- 글쓰기 탭 -->
-            <div id="writeTab" class="tab-content active">
-                <div class="form-group">
-                    <label for="postTitle" class="form-label">제목</label>
-                    <input type="text" id="postTitle" class="form-input" placeholder="AI가 생성한 제목이 여기에 표시됩니다">
+            <!-- Floating mood card -->
+            <div class="glass rounded-2xl px-4 py-3 absolute -bottom-6 -left-6 z-20 float">
+              <div class="flex items-center gap-3">
+                <div class="flex gap-1.5 text-2xl">
+                  <span>&#128522;</span><span>&#128524;</span><span>&#128532;</span>
                 </div>
-
-                <div class="form-group">
-                    <label for="postContent" class="form-label">본문</label>
-                    <textarea id="postContent" class="form-textarea" rows="20" placeholder="AI가 생성한 콘텐츠가 여기에 표시됩니다..."></textarea>
+                <div>
+                  <div class="text-xs text-gray-400">오늘의 감정</div>
+                  <div class="text-sm font-semibold text-sage-700">체크인 완료</div>
                 </div>
-
-                <div class="form-group">
-                    <div class="flex gap-2">
-                        <input type="text" id="postTags" class="form-input" placeholder="태그 (쉼표로 구분)">
-                        <select id="postCategory" class="form-select">
-                            <option value="basic-care">기초 케어</option>
-                            <option value="styling">스타일링</option>
-                            <option value="coloring">염색/컬러링</option>
-                            <option value="perm-treatment">펌/매직</option>
-                            <option value="scalp-care">두피 케어</option>
-                            <option value="hair-loss">탈모 관리</option>
-                            <option value="product-review">제품 리뷰</option>
-                            <option value="trend-news">트렌드/뉴스</option>
-                            <option value="diy-tips">셀프 케어</option>
-                            <option value="professional">전문가 팁</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- 생성 진행 상태 -->
-                <div id="generationProgress" class="hidden mt-2">
-                    <div style="background: #f3f4f6; padding: 1rem; border-radius: 8px; text-align: center;">
-                        <div class="btn-loader" style="display: inline-block; margin-right: 0.5rem;"></div>
-                        <span id="progressText">AI가 헤어케어 전문 콘텐츠를 생성하고 있습니다...</span>
-                    </div>
-                </div>
-
-                <!-- 액션 버튼들 -->
-                <div class="flex gap-2 mt-2">
-                    <button class="btn btn-primary" onclick="processAllQueue()">
-                        🚀 전체 처리
-                    </button>
-                    <button class="btn btn-secondary" onclick="checkQuality()" title="Ctrl+P">📊 품질 검사</button>
-                    <button class="btn btn-success" onclick="publishContent()">
-                        📤 발행하기
-                    </button>
-                </div>
+              </div>
             </div>
-
-            <!-- 글감 큐 탭 -->
-            <div id="queueTab" class="tab-content">
-                <div class="flex justify-between items-center mb-2">
-                    <h3>📋 글감 큐 관리</h3>
-                    <div class="flex gap-1">
-                        <button class="btn btn-primary" onclick="filterQueue('all')">전체</button>
-                        <button class="btn btn-secondary" onclick="filterQueue('대기중')">대기중</button>
-                        <button class="btn btn-secondary" onclick="filterQueue('완료')">완료</button>
-                        <button class="btn btn-secondary" onclick="filterQueue('실패')">실패</button>
-                    </div>
+            <!-- Floating booking card -->
+            <div class="glass rounded-2xl px-4 py-3 absolute -top-4 -right-4 z-20 float-delay">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-lavender-100 flex items-center justify-center">
+                  <iconify-icon icon="solar:calendar-bold" class="text-lavender-500"></iconify-icon>
                 </div>
-                
-                <div id="queueContainer">
-                    <!-- 글감 큐 아이템들이 동적으로 표시됩니다 -->
-                    <p class="text-center" style="color: #6b7280; margin: 2rem 0;">글감 큐가 로딩 중입니다...</p>
+                <div>
+                  <div class="text-xs text-gray-400">다음 상담</div>
+                  <div class="text-sm font-semibold">4월 5일 14:00</div>
                 </div>
-
-                <div class="flex gap-2 mt-2">
-                    <button class="btn btn-success" onclick="showAddContentModal()">➕ 새 글감 추가</button>
-                    <button class="btn btn-warning" onclick="clearCompletedQueue()">🗑️ 완료된 항목 삭제</button>
-                </div>
+              </div>
             </div>
-
-            <!-- SEO 탭 -->
-            <div id="seoTab" class="tab-content">
-                <div class="form-group">
-                    <label for="seoTitle" class="form-label">SEO 제목</label>
-                    <input type="text" id="seoTitle" class="form-input" placeholder="검색 최적화된 제목">
-                    <button class="btn btn-secondary mt-1" onclick="generateSEOTitle()">🎯 SEO 제목 생성</button>
-                </div>
-
-                <div class="form-group">
-                    <label for="metaDescription" class="form-label">메타 설명</label>
-                    <textarea id="metaDescription" class="form-input" rows="3" placeholder="검색 결과에 표시될 설명"></textarea>
-                    <button class="btn btn-secondary mt-1" onclick="generateMetaDescription()">📝 메타 설명 생성</button>
-                </div>
-
-                <div class="form-group">
-                    <label for="primaryKeywords" class="form-label">주요 키워드</label>
-                    <input type="text" id="primaryKeywords" class="form-input" placeholder="헤어케어, 샴푸, 트리트먼트">
-                    <button class="btn btn-secondary mt-1" onclick="suggestKeywords()">💡 키워드 제안</button>
-                </div>
-
-                <div id="keywordSuggestions" class="mt-2">
-                    <!-- 키워드 제안들이 여기에 표시됩니다 -->
-                </div>
-
-                <div class="flex gap-2 mt-2">
-                    <button class="btn btn-primary" onclick="checkSEOScore()">📈 SEO 점수 체크</button>
-                </div>
-            </div>
-
-            <!-- 이미지 탭 -->
-            <div id="imageTab" class="tab-content">
-                <div class="form-group">
-                    <label for="imagePrompt" class="form-label">이미지 설명</label>
-                    <input type="text" id="imagePrompt" class="form-input" placeholder="예: 건강한 머리카락을 가진 여성이 미소짓는 모습">
-                    <button class="btn btn-primary mt-1" onclick="generateImage()">🎨 이미지 생성</button>
-                </div>
-
-                <div id="generatedImages" class="mt-2">
-                    <!-- 생성된 이미지들이 여기에 표시됩니다 -->
-                </div>
-
-                <div class="form-group mt-2">
-                    <label class="form-label">추천 이미지 프롬프트</label>
-                    <div class="flex gap-1" style="flex-wrap: wrap;">
-                        <button class="btn btn-secondary" onclick="document.getElementById('imagePrompt').value='아름다운 헤어케어 제품들이 정렬된 모습'">제품 진열</button>
-                        <button class="btn btn-secondary" onclick="document.getElementById('imagePrompt').value='전문 헤어 스타일리스트가 고객을 케어하는 모습'">전문가 케어</button>
-                        <button class="btn btn-secondary" onclick="document.getElementById('imagePrompt').value='건강하고 윤기나는 머리카락 클로즈업'">건강한 모발</button>
-                        <button class="btn btn-secondary" onclick="document.getElementById('imagePrompt').value='모던한 헤어살롱 인테리어'">살롱 인테리어</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 설정 탭 -->
-            <div id="settingsTab" class="tab-content">
-                <div class="settings-grid">
-                    <!-- API 키 설정 -->
-                    <section style="background: var(--white); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem;">
-                        <h3>🔑 AI API 키 설정</h3>
-                        <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.875rem;">Claude 또는 OpenAI API 키 중 하나만 입력하면 됩니다.</p>
-                        
-                        <div style="margin-bottom: 1.5rem;">
-                            <label style="display: block; font-weight: var(--font-weight-semibold); margin-bottom: 0.5rem; color: var(--text-primary);">Claude API 키</label>
-                            <div style="display: flex; gap: 0.5rem;">
-                                <input type="password" id="claudeApiKey" placeholder="sk-ant-api03-..." style="flex: 1; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-family: var(--font-mono); font-size: 0.875rem;">
-                                <button onclick="setAPIKey('claude')" style="background: var(--primary); color: var(--white); border: none; padding: 0.75rem 1.5rem; border-radius: var(--radius-md); font-weight: var(--font-weight-medium); cursor: pointer;">설정</button>
-                            </div>
-                            <div style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-secondary);">
-                                상태: <span id="claudeKeyStatus" style="font-weight: var(--font-weight-medium);">미설정</span>
-                            </div>
-                        </div>
-                        
-                        <div style="margin-bottom: 1.5rem;">
-                            <label style="display: block; font-weight: var(--font-weight-semibold); margin-bottom: 0.5rem; color: var(--text-primary);">OpenAI API 키</label>
-                            <div style="display: flex; gap: 0.5rem;">
-                                <input type="password" id="openaiApiKey" placeholder="sk-proj-..." style="flex: 1; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-family: var(--font-mono); font-size: 0.875rem;">
-                                <button onclick="setAPIKey('openai')" style="background: var(--primary); color: var(--white); border: none; padding: 0.75rem 1.5rem; border-radius: var(--radius-md); font-weight: var(--font-weight-medium); cursor: pointer;">설정</button>
-                            </div>
-                            <div style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-secondary);">
-                                상태: <span id="openaiKeyStatus" style="font-weight: var(--font-weight-medium);">미설정</span>
-                            </div>
-                        </div>
-                        
-                        <div style="margin-top: 1.5rem; padding: 1rem; background: var(--gray-50); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
-                            <p><strong>API 키 발급 방법:</strong></p>
-                            <ul style="margin: 0.5rem 0 0 1rem; color: var(--text-secondary);">
-                                <li><strong>Claude:</strong> <a href="https://console.anthropic.com" target="_blank" style="color: var(--primary); text-decoration: none;">console.anthropic.com</a> → API Keys</li>
-                                <li><strong>OpenAI:</strong> <a href="https://platform.openai.com" target="_blank" style="color: var(--primary); text-decoration: none;">platform.openai.com</a> → API Keys</li>
-                            </ul>
-                        </div>
-                    </section>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- 오른쪽 사이드바 -->
-        <div class="sidebar">
-            <!-- AI 서비스 설정 -->
-            <section style="background: var(--white); border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-md); border: 1px solid var(--border-color);">
-                <h3 class="flex items-center justify-between">
-                    🤖 AI 서비스
-                    <button id="addWritingSampleBtn" class="add-sample-btn" onclick="showWritingSampleModal()" title="말투 학습용 텍스트 추가">
-                        <span class="plus-icon">+</span>
-                    </button>
-                </h3>
-                
-                <div class="ai-service-item">
-                    <div class="service-info">
-                        <span class="service-name">📝 Claude (글 작성)</span>
-                        <span id="claudeStatus" class="status-badge" style="color: #dc2626;">연결안됨</span>
-                    </div>
-                </div>
-                
-                <div class="ai-service-item">
-                    <div class="service-info">
-                        <span class="service-name">🎨 OpenAI (이미지)</span>
-                        <span id="openaiStatus" class="status-badge" style="color: #dc2626;">연결안됨</span>
-                    </div>
-                </div>
-                
-                <!-- 말투 학습 상태 -->
-                <div class="writing-style-info">
-                    <div class="style-header">
-                        <span class="style-title">🎯 말투 학습 상태</span>
-                        <span id="learningSampleCount" class="sample-count">0개 샘플</span>
-                    </div>
-                    <div id="learnedStyleSummary" class="style-summary">
-                        말투 학습을 위해 샘플을 추가해주세요
-                    </div>
-                </div>
-            </section>
+  <!-- ==================== TRUST STRIP ==================== -->
+  <section class="py-6 border-y border-gray-100 bg-white/50 overflow-hidden">
+    <div class="flex whitespace-nowrap">
+      <div class="marquee-track flex items-center gap-12 px-6">
+        <span class="text-gray-300 font-semibold text-sm tracking-wide">한국심리학회 인증</span>
+        <span class="text-gray-200">|</span>
+        <span class="text-gray-300 font-semibold text-sm tracking-wide">임상심리전문가 검증</span>
+        <span class="text-gray-200">|</span>
+        <span class="text-gray-300 font-semibold text-sm tracking-wide">개인정보보호법 준수</span>
+        <span class="text-gray-200">|</span>
+        <span class="text-gray-300 font-semibold text-sm tracking-wide">AES-256 암호화</span>
+        <span class="text-gray-200">|</span>
+        <span class="text-gray-300 font-semibold text-sm tracking-wide">24시간 위기 상담 연계</span>
+        <span class="text-gray-200">|</span>
+        <span class="text-gray-300 font-semibold text-sm tracking-wide">47,200+ 누적 이용자</span>
+        <span class="text-gray-200">|</span>
+        <span class="text-gray-300 font-semibold text-sm tracking-wide">한국심리학회 인증</span>
+        <span class="text-gray-200">|</span>
+        <span class="text-gray-300 font-semibold text-sm tracking-wide">임상심리전문가 검증</span>
+        <span class="text-gray-200">|</span>
+        <span class="text-gray-300 font-semibold text-sm tracking-wide">개인정보보호법 준수</span>
+        <span class="text-gray-200">|</span>
+        <span class="text-gray-300 font-semibold text-sm tracking-wide">AES-256 암호화</span>
+        <span class="text-gray-200">|</span>
+        <span class="text-gray-300 font-semibold text-sm tracking-wide">24시간 위기 상담 연계</span>
+        <span class="text-gray-200">|</span>
+        <span class="text-gray-300 font-semibold text-sm tracking-wide">47,200+ 누적 이용자</span>
+      </div>
+    </div>
+  </section>
 
-            <!-- 품질 메트릭 -->
-            <section style="background: var(--white); border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); margin-top: 1.5rem;">
-                <h3>📊 콘텐츠 품질</h3>
-                <div id="overallQuality" class="quality-score">76점</div>
-                
-                <div class="quality-metrics">
-                    <div class="metric-item">
-                        <span>글자 수</span>
-                        <div class="flex items-center gap-1">
-                            <span id="wordCount">2395</span>
-                            <div class="metric-bar">
-                                <div id="wordCountBar" class="metric-fill" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="metric-item">
-                        <span>가독성</span>
-                        <div class="flex items-center gap-1">
-                            <span id="readability">82</span>
-                            <div class="metric-bar">
-                                <div id="readabilityBar" class="metric-fill" style="width: 82%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="metric-item">
-                        <span>키워드 밀도</span>
-                        <div class="flex items-center gap-1">
-                            <span id="keywordDensity">2.1%</span>
-                            <div class="metric-bar">
-                                <div id="keywordDensityBar" class="metric-fill" style="width: 70%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="metric-item">
-                        <span>구조 점수</span>
-                        <div class="flex items-center gap-1">
-                            <span id="structureScore">75</span>
-                            <div class="metric-bar">
-                                <div id="structureScoreBar" class="metric-fill" style="width: 75%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div id="qualityRecommendations" class="mt-2">
-                    <!-- 품질 개선 추천사항들이 여기에 표시됩니다 -->
-                </div>
-            </section>
-
-            <!-- 자동화 설정 -->
-            <section style="background: var(--white); border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); margin-top: 1.5rem;">
-                <h3>⚙️ 자동화</h3>
-                <div class="form-group">
-                    <label class="flex items-center gap-1">
-                        <input type="checkbox" id="automationEnabled" onchange="toggleAutomation()">
-                        자동 처리 활성화
-                    </label>
-                </div>
-                
-                <div class="form-group">
-                    <label for="processInterval" class="form-label">처리 간격 (분)</label>
-                    <select id="processInterval" class="form-select">
-                        <option value="30">30분</option>
-                        <option value="60" selected>1시간</option>
-                        <option value="120">2시간</option>
-                        <option value="240">4시간</option>
-                    </select>
-                </div>
-                
-                <button class="btn btn-success" onclick="startAutomation()">🚀 자동화 시작</button>
-            </section>
-
-            <!-- 시스템 정보 -->
-            <section style="background: var(--white); border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); margin-top: 1.5rem;">
-                <h3>📈 시스템 상태</h3>
-                <div class="system-stats">
-                    <div class="stat-item">
-                        <span>생성된 글</span>
-                        <span id="totalGenerated">0</span>
-                    </div>
-                    <div class="stat-item">
-                        <span>발행된 글</span>
-                        <span id="totalPublished">0</span>
-                    </div>
-                    <div class="stat-item">
-                        <span>시스템 상태</span>
-                        <span id="systemStatus">정상</span>
-                    </div>
-                </div>
-            </section>
+  <!-- ==================== FEATURES (Bento Grid) ==================== -->
+  <section id="features" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="inline-flex items-center gap-2 bg-sage-50 rounded-full px-4 py-1.5 text-sage-600 text-sm font-medium mb-4">
+          <iconify-icon icon="solar:widget-bold"></iconify-icon>
+          핵심 서비스
         </div>
-    </div>
-
-    <!-- 모달들 -->
-    <!-- 말투 학습 모달 -->
-    <div id="writingSampleModal" class="modal" style="display: none;">
-        <div class="modal-content" style="max-width: 600px;">
-            <div class="modal-header">
-                <h3>📚 말투 학습용 텍스트 추가</h3>
-                <button class="modal-close" onclick="closeWritingSampleModal()">&times;</button>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
+          마음을 돌보는<br>네 가지 방법
+        </h2>
+        <p class="text-gray-500 text-lg max-w-2xl mx-auto">
+          일상적인 감정 관리부터 전문 상담까지, 당신에게 맞는 방법을 선택하세요
+        </p>
+      </div>
+      <!-- Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
+        <!-- AI Chat - Large -->
+        <div class="md:col-span-4 glass rounded-3xl p-8 reveal reveal-delay-1 group cursor-pointer hover:shadow-lg transition-shadow" onclick="openModal('chatModal')">
+          <div class="flex flex-col md:flex-row gap-6 items-start">
+            <div class="flex-1">
+              <div class="w-12 h-12 rounded-2xl bg-sage-100 flex items-center justify-center mb-4">
+                <iconify-icon icon="solar:chat-round-dots-bold" class="text-sage-600 text-2xl"></iconify-icon>
+              </div>
+              <h3 class="text-xl font-bold mb-2">AI 마음 상담</h3>
+              <p class="text-gray-500 leading-relaxed mb-4">24시간 언제든 AI와 대화하세요. 공감 기반 대화로 감정을 정리하고, 필요할 때 전문 상담사를 연결해 드립니다.</p>
+              <span class="inline-flex items-center gap-1 text-sage-600 text-sm font-semibold group-hover:gap-2 transition-all">
+                지금 대화하기
+                <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+              </span>
             </div>
-            
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="sampleTitle">글 제목</label>
-                    <input type="text" id="sampleTitle" class="form-input" placeholder="예: 겨울철 헤어케어 가이드">
-                </div>
-                
-                <div class="form-group">
-                    <label for="sampleContent">내용 (내 말투가 담긴 글)</label>
-                    <textarea id="sampleContent" class="form-textarea" rows="8" placeholder="내가 평소에 쓰는 말투와 스타일이 담긴 글을 붙여넣어주세요. Claude가 이 글을 분석해서 비슷한 톤으로 새로운 글을 작성합니다.
-
-예:
-안녕하세요! 오늘은 겨울철 모발 관리에 대해 이야기해볼게요. 
-추운 날씨 때문에 모발이 건조해져서 고민이신 분들 많으실 텐데요..."></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="sampleCategory">카테고리</label>
-                    <select id="sampleCategory" class="form-select">
-                        <option value="haircare">헤어케어</option>
-                        <option value="beauty">뷰티</option>
-                        <option value="lifestyle">라이프스타일</option>
-                        <option value="general">일반</option>
-                    </select>
-                </div>
+            <div class="w-full md:w-64 shrink-0 bg-sage-50/50 rounded-2xl p-4">
+              <div class="space-y-2.5">
+                <div class="chat-bubble-ai px-3 py-2 text-xs">오늘 하루 어떠셨나요?</div>
+                <div class="chat-bubble-user px-3 py-2 text-xs ml-auto">좀 지친 하루였어요</div>
+                <div class="chat-bubble-ai px-3 py-2 text-xs">충분히 쉬어도 괜찮아요</div>
+              </div>
             </div>
-            
-            <div style="padding: 1.5rem 2rem; border-top: 1px solid var(--border-color); display: flex; gap: 1rem; justify-content: flex-end;">
-                <button onclick="closeWritingSampleModal()" class="btn btn-secondary">취소</button>
-                <button onclick="addWritingSample()" class="btn btn-primary">학습 샘플 추가</button>
-            </div>
-            
-            <!-- 기존 학습 샘플 목록 -->
-            <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
-                <h4>📋 기존 학습 샘플</h4>
-                <div id="writingSamplesList" style="max-height: 300px; overflow-y: auto;">
-                    <!-- 동적으로 추가됨 -->
-                </div>
-            </div>
+          </div>
         </div>
+        <!-- Mood Check-in -->
+        <div class="md:col-span-2 glass rounded-3xl p-8 reveal reveal-delay-2 group cursor-pointer hover:shadow-lg transition-shadow" onclick="openModal('moodModal')">
+          <div class="w-12 h-12 rounded-2xl bg-amber-50 flex items-center justify-center mb-4">
+            <iconify-icon icon="solar:emoji-funny-circle-bold" class="text-amber-500 text-2xl"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-bold mb-2">감정 체크인</h3>
+          <p class="text-gray-500 text-sm leading-relaxed mb-4">매일 기분을 기록하고 나만의 감정 패턴을 발견하세요.</p>
+          <div class="flex gap-2 text-2xl mb-3">
+            <span class="opacity-60">&#128516;</span>
+            <span class="opacity-80">&#128522;</span>
+            <span>&#128528;</span>
+            <span class="opacity-80">&#128546;</span>
+            <span class="opacity-60">&#128560;</span>
+          </div>
+          <span class="inline-flex items-center gap-1 text-sage-600 text-sm font-semibold group-hover:gap-2 transition-all">
+            기록하기
+            <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+          </span>
+        </div>
+        <!-- Assessment -->
+        <div class="md:col-span-2 glass rounded-3xl p-8 reveal reveal-delay-3 group cursor-pointer hover:shadow-lg transition-shadow" onclick="openModal('assessmentModal')">
+          <div class="w-12 h-12 rounded-2xl bg-lavender-50 flex items-center justify-center mb-4">
+            <iconify-icon icon="solar:clipboard-check-bold" class="text-lavender-500 text-2xl"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-bold mb-2">심리검사</h3>
+          <p class="text-gray-500 text-sm leading-relaxed mb-4">PHQ-9, GAD-7 표준 검사로 마음 상태를 객관적으로 확인하세요.</p>
+          <div class="flex items-center gap-2 text-xs text-gray-400 mb-3">
+            <span class="bg-lavender-50 text-lavender-600 px-2 py-0.5 rounded-full font-medium">PHQ-9</span>
+            <span class="bg-sage-50 text-sage-600 px-2 py-0.5 rounded-full font-medium">GAD-7</span>
+          </div>
+          <span class="inline-flex items-center gap-1 text-sage-600 text-sm font-semibold group-hover:gap-2 transition-all">
+            검사 시작
+            <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+          </span>
+        </div>
+        <!-- Booking - Large -->
+        <div id="counselors" class="md:col-span-4 glass rounded-3xl p-8 reveal reveal-delay-4 group cursor-pointer hover:shadow-lg transition-shadow" onclick="openModal('bookingModal')">
+          <div class="flex flex-col md:flex-row gap-6 items-start">
+            <div class="flex-1">
+              <div class="w-12 h-12 rounded-2xl bg-rose-50 flex items-center justify-center mb-4">
+                <iconify-icon icon="solar:calendar-bold" class="text-rose-400 text-2xl"></iconify-icon>
+              </div>
+              <h3 class="text-xl font-bold mb-2">전문 상담 예약</h3>
+              <p class="text-gray-500 leading-relaxed mb-4">검증된 전문 상담사와 1:1 상담을 예약하세요. 화상, 음성, 채팅 중 편한 방식을 선택할 수 있습니다.</p>
+              <span class="inline-flex items-center gap-1 text-sage-600 text-sm font-semibold group-hover:gap-2 transition-all">
+                상담 예약하기
+                <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+              </span>
+            </div>
+            <div class="w-full md:w-72 shrink-0">
+              <div class="bg-white/60 rounded-2xl p-4 space-y-3">
+                <div class="flex items-center gap-3">
+                  <img src="https://i.pravatar.cc/150?u=counselor-yoon" alt="윤서현 상담사" class="w-10 h-10 rounded-full object-cover" loading="lazy" decoding="async">
+                  <div>
+                    <div class="font-semibold text-sm">윤서현 상담사</div>
+                    <div class="text-xs text-gray-400">임상심리전문가 | 경력 8년</div>
+                  </div>
+                </div>
+                <div class="flex gap-2 text-xs">
+                  <span class="bg-sage-50 text-sage-600 px-2 py-1 rounded-lg">스트레스</span>
+                  <span class="bg-lavender-50 text-lavender-600 px-2 py-1 rounded-lg">직장생활</span>
+                  <span class="bg-amber-50 text-amber-600 px-2 py-1 rounded-lg">번아웃</span>
+                </div>
+                <div class="flex items-center gap-2 text-xs text-gray-400">
+                  <iconify-icon icon="solar:calendar-linear" class="text-sage-500"></iconify-icon>
+                  가장 빠른 예약: 4월 4일 (금) 14:00
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <!-- 알림 컨테이너 -->
-    <div id="notificationContainer" class="notification-container">
-        <!-- 알림들이 여기에 동적으로 추가됩니다 -->
+  <!-- ==================== HOW IT WORKS ==================== -->
+  <section class="py-24 md:py-32 bg-white/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="inline-flex items-center gap-2 bg-sage-50 rounded-full px-4 py-1.5 text-sage-600 text-sm font-medium mb-4">
+          <iconify-icon icon="solar:routing-bold"></iconify-icon>
+          이용 방법
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
+          3분이면 시작할 수 있어요
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        <!-- Step 1 -->
+        <div class="reveal reveal-delay-1 text-center md:text-left">
+          <div class="w-16 h-16 rounded-2xl bg-sage-50 flex items-center justify-center mx-auto md:mx-0 mb-5">
+            <span class="text-sage-500 font-bold text-2xl">01</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3">감정을 기록해요</h3>
+          <p class="text-gray-500 leading-relaxed">오늘의 기분을 선택하고 간단한 메모를 남기세요. 나도 몰랐던 감정의 패턴을 발견할 수 있어요.</p>
+        </div>
+        <!-- Step 2 -->
+        <div class="reveal reveal-delay-2 text-center md:text-left">
+          <div class="w-16 h-16 rounded-2xl bg-lavender-50 flex items-center justify-center mx-auto md:mx-0 mb-5">
+            <span class="text-lavender-500 font-bold text-2xl">02</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3">AI와 대화해요</h3>
+          <p class="text-gray-500 leading-relaxed">24시간 AI 상담사와 편하게 이야기하세요. 판단 없이 공감하고, 생각을 정리하는 데 도움을 드려요.</p>
+        </div>
+        <!-- Step 3 -->
+        <div class="reveal reveal-delay-3 text-center md:text-left">
+          <div class="w-16 h-16 rounded-2xl bg-rose-50 flex items-center justify-center mx-auto md:mx-0 mb-5">
+            <span class="text-rose-400 font-bold text-2xl">03</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3">전문 상담을 예약해요</h3>
+          <p class="text-gray-500 leading-relaxed">더 깊은 이야기가 필요하다면 전문 상담사와 1:1 상담을 예약하세요. 날짜와 시간, 상담 방식을 자유롭게 선택할 수 있어요.</p>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <!-- 키보드 단축키 도움말 -->
-    <div style="position: fixed; bottom: 1rem; left: 1rem; font-size: 0.8rem; color: #6b7280; background: rgba(255,255,255,0.9); padding: 0.5rem; border-radius: 4px; border: 1px solid #e5e7eb;">
-        💡 단축키: Ctrl+Enter (다음 글), Ctrl+S (저장), Ctrl+P (품질검사), F1 (도움말)
+  <!-- ==================== COUNSELOR PROFILES ==================== -->
+  <section id="assessment" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="inline-flex items-center gap-2 bg-sage-50 rounded-full px-4 py-1.5 text-sage-600 text-sm font-medium mb-4">
+          <iconify-icon icon="solar:user-check-bold"></iconify-icon>
+          전문 상담사
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
+          검증된 전문가와 함께해요
+        </h2>
+        <p class="text-gray-500 text-lg max-w-2xl mx-auto">
+          모든 상담사는 자격 검증과 정기 슈퍼비전을 거칩니다
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Counselor 1 -->
+        <div class="glass rounded-3xl p-6 reveal reveal-delay-1 hover:shadow-lg transition-shadow">
+          <div class="flex items-start gap-4 mb-4">
+            <img src="https://i.pravatar.cc/150?u=counselor-yoon" alt="윤서현 상담사" class="w-16 h-16 rounded-2xl object-cover" loading="lazy" decoding="async">
+            <div>
+              <h3 class="font-bold text-lg">윤서현</h3>
+              <p class="text-sm text-gray-400">임상심리전문가</p>
+              <div class="flex items-center gap-1 mt-1">
+                <iconify-icon icon="solar:star-bold" class="text-amber-400 text-sm"></iconify-icon>
+                <span class="text-sm font-medium">4.92</span>
+                <span class="text-xs text-gray-400">(384건)</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            <span class="bg-sage-50 text-sage-600 text-xs px-2.5 py-1 rounded-lg font-medium">스트레스</span>
+            <span class="bg-lavender-50 text-lavender-600 text-xs px-2.5 py-1 rounded-lg font-medium">직장생활</span>
+            <span class="bg-amber-50 text-amber-600 text-xs px-2.5 py-1 rounded-lg font-medium">번아웃</span>
+          </div>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4">"당신이 느끼는 감정은 모두 자연스러운 것입니다. 함께 하나씩 풀어나가요."</p>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-400">경력 8년</span>
+            <button onclick="selectCounselor('윤서현','counselor-yoon')" class="cta-btn bg-sage-500 hover:bg-sage-600 text-white text-sm font-semibold px-4 py-2 rounded-xl flex items-center gap-1">
+              예약하기
+              <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+            </button>
+          </div>
+        </div>
+        <!-- Counselor 2 -->
+        <div class="glass rounded-3xl p-6 reveal reveal-delay-2 hover:shadow-lg transition-shadow">
+          <div class="flex items-start gap-4 mb-4">
+            <img src="https://i.pravatar.cc/150?u=counselor-park" alt="박도현 상담사" class="w-16 h-16 rounded-2xl object-cover" loading="lazy" decoding="async">
+            <div>
+              <h3 class="font-bold text-lg">박도현</h3>
+              <p class="text-sm text-gray-400">전문상담사 1급</p>
+              <div class="flex items-center gap-1 mt-1">
+                <iconify-icon icon="solar:star-bold" class="text-amber-400 text-sm"></iconify-icon>
+                <span class="text-sm font-medium">4.88</span>
+                <span class="text-xs text-gray-400">(256건)</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            <span class="bg-sage-50 text-sage-600 text-xs px-2.5 py-1 rounded-lg font-medium">대인관계</span>
+            <span class="bg-lavender-50 text-lavender-600 text-xs px-2.5 py-1 rounded-lg font-medium">자존감</span>
+            <span class="bg-rose-50 text-rose-500 text-xs px-2.5 py-1 rounded-lg font-medium">불안</span>
+          </div>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4">"관계 속에서 생기는 어려움, 혼자 안고 가지 않아도 됩니다."</p>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-400">경력 12년</span>
+            <button onclick="selectCounselor('박도현','counselor-park')" class="cta-btn bg-sage-500 hover:bg-sage-600 text-white text-sm font-semibold px-4 py-2 rounded-xl flex items-center gap-1">
+              예약하기
+              <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+            </button>
+          </div>
+        </div>
+        <!-- Counselor 3 -->
+        <div class="glass rounded-3xl p-6 reveal reveal-delay-3 hover:shadow-lg transition-shadow">
+          <div class="flex items-start gap-4 mb-4">
+            <img src="https://i.pravatar.cc/150?u=counselor-lee" alt="이서진 상담사" class="w-16 h-16 rounded-2xl object-cover" loading="lazy" decoding="async">
+            <div>
+              <h3 class="font-bold text-lg">이서진</h3>
+              <p class="text-sm text-gray-400">정신건강임상심리사 1급</p>
+              <div class="flex items-center gap-1 mt-1">
+                <iconify-icon icon="solar:star-bold" class="text-amber-400 text-sm"></iconify-icon>
+                <span class="text-sm font-medium">4.95</span>
+                <span class="text-xs text-gray-400">(521건)</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            <span class="bg-sage-50 text-sage-600 text-xs px-2.5 py-1 rounded-lg font-medium">우울</span>
+            <span class="bg-lavender-50 text-lavender-600 text-xs px-2.5 py-1 rounded-lg font-medium">트라우마</span>
+            <span class="bg-amber-50 text-amber-600 text-xs px-2.5 py-1 rounded-lg font-medium">수면</span>
+          </div>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4">"어둠 속에서도 빛을 찾을 수 있습니다. 그 여정에 함께하겠습니다."</p>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-400">경력 15년</span>
+            <button onclick="selectCounselor('이서진','counselor-lee')" class="cta-btn bg-sage-500 hover:bg-sage-600 text-white text-sm font-semibold px-4 py-2 rounded-xl flex items-center gap-1">
+              예약하기
+              <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script>
-        // PDF.js 워커 설정
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  <!-- ==================== TESTIMONIALS ==================== -->
+  <section class="py-24 md:py-32 bg-white/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="inline-flex items-center gap-2 bg-sage-50 rounded-full px-4 py-1.5 text-sage-600 text-sm font-medium mb-4">
+          <iconify-icon icon="solar:chat-square-like-bold"></iconify-icon>
+          이용 후기
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
+          먼저 경험한 분들의 이야기
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="glass rounded-3xl p-8 reveal reveal-delay-1">
+          <div class="flex items-center gap-1 mb-4">
+            <iconify-icon icon="solar:star-bold" class="text-amber-400"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" class="text-amber-400"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" class="text-amber-400"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" class="text-amber-400"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" class="text-amber-400"></iconify-icon>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">"처음엔 AI 상담이 도움이 될까 했는데, 매일 감정을 기록하면서 제 마음의 패턴을 이해하게 되었어요. 윤서현 상담사님과의 상담도 너무 좋았습니다."</p>
+          <div class="flex items-center gap-3">
+            <img src="https://i.pravatar.cc/150?u=user-hajoon" alt="하윤서" class="w-10 h-10 rounded-full object-cover" loading="lazy" decoding="async">
+            <div>
+              <div class="font-semibold text-sm">하윤서</div>
+              <div class="text-xs text-gray-400">29세 | 마케터</div>
+            </div>
+          </div>
+        </div>
+        <div class="glass rounded-3xl p-8 reveal reveal-delay-2">
+          <div class="flex items-center gap-1 mb-4">
+            <iconify-icon icon="solar:star-bold" class="text-amber-400"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" class="text-amber-400"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" class="text-amber-400"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" class="text-amber-400"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" class="text-amber-400"></iconify-icon>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">"번아웃이 와서 힘들었는데, PHQ-9 검사로 제 상태를 객관적으로 확인하고 적절한 도움을 받을 수 있었어요. 예약 시스템도 간편해서 부담 없이 시작했습니다."</p>
+          <div class="flex items-center gap-3">
+            <img src="https://i.pravatar.cc/150?u=user-kim-jh" alt="김재훈" class="w-10 h-10 rounded-full object-cover" loading="lazy" decoding="async">
+            <div>
+              <div class="font-semibold text-sm">김재훈</div>
+              <div class="text-xs text-gray-400">34세 | 개발자</div>
+            </div>
+          </div>
+        </div>
+        <div class="glass rounded-3xl p-8 reveal reveal-delay-3 md:col-span-2 lg:col-span-1">
+          <div class="flex items-center gap-1 mb-4">
+            <iconify-icon icon="solar:star-bold" class="text-amber-400"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" class="text-amber-400"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" class="text-amber-400"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" class="text-amber-400"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" class="text-amber-400"></iconify-icon>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">"새벽에 불안이 올 때 AI 상담이 있어서 정말 다행이었어요. 혼자 버티지 않아도 된다는 게 큰 위안이 됩니다. 이서진 상담사님 덕분에 많이 좋아졌어요."</p>
+          <div class="flex items-center gap-3">
+            <img src="https://i.pravatar.cc/150?u=user-choi" alt="최민아" class="w-10 h-10 rounded-full object-cover" loading="lazy" decoding="async">
+            <div>
+              <div class="font-semibold text-sm">최민아</div>
+              <div class="text-xs text-gray-400">26세 | 대학원생</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // HAIRGATOR AI 서비스 클래스
-        class HairGatorAIService {
-            constructor() {
-                this.config = {
-                    claude: {
-                        apiKey: '',
-                        baseURL: 'https://api.anthropic.com/v1/messages',
-                        model: 'claude-3-5-sonnet-20241022'
-                    },
-                    openai: {
-                        apiKey: '',
-                        baseURL: 'https://api.openai.com/v1/chat/completions',
-                        imageURL: 'https://api.openai.com/v1/images/generations'
-                    }
-                };
-                
-                this.writingStyle = {
-                    samples: [],
-                    analyzedStyle: {
-                        sentenceLength: 'medium',
-                        tone: 'friendly',
-                        vocabulary: 'professional',
-                        structure: 'organized'
-                    }
-                };
-                
-                this.connectionStatus = {
-                    claude: false,
-                    openai: false,
-                    lastChecked: null
-                };
-                
-                this.loadWritingStyle();
-                console.log('🤖 HAIRGATOR AI 서비스 초기화 완료');
-            }
-            
-            // ===== URL 콘텐츠 실제 읽기 =====
-            async fetchUrlContent(url) {
-                try {
-                    console.log(`🌐 URL 콘텐츠 읽는 중: ${url}`);
-                    
-                    // CORS 우회를 위한 여러 프록시 시도
-                    const proxies = [
-                        `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
-                        `https://corsproxy.io/?${encodeURIComponent(url)}`,
-                        `https://cors-anywhere.herokuapp.com/${url}`
-                    ];
-                    
-                    for (let proxy of proxies) {
-                        try {
-                            const response = await fetch(proxy);
-                            if (response.ok) {
-                                const data = await response.json();
-                                const content = data.contents || data.content || '';
-                                
-                                // HTML 태그 제거하고 텍스트만 추출
-                                const textContent = this.extractTextFromHtml(content);
-                                
-                                console.log(`✅ URL 읽기 성공: ${url} (${textContent.length}자)`);
-                                return textContent;
-                            }
-                        } catch (error) {
-                            console.log(`❌ 프록시 ${proxy} 실패:`, error.message);
-                            continue;
-                        }
-                    }
-                    
-                    throw new Error('모든 프록시에서 URL 읽기 실패');
-                    
-                } catch (error) {
-                    console.error(`❌ URL 읽기 실패 (${url}):`, error);
-                    return `URL 읽기 실패: ${url} (${error.message})`;
-                }
-            }
-            
-            // HTML에서 텍스트 추출
-            extractTextFromHtml(html) {
-                try {
-                    // 임시 DOM 요소 생성
-                    const tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = html;
-                    
-                    // 스크립트, 스타일 태그 제거
-                    const scripts = tempDiv.querySelectorAll('script, style, nav, footer, aside');
-                    scripts.forEach(el => el.remove());
-                    
-                    // 텍스트만 추출
-                    const text = tempDiv.textContent || tempDiv.innerText || '';
-                    
-                    // 공백 정리
-                    return text.replace(/\s+/g, ' ').trim().substring(0, 5000); // 최대 5000자
-                    
-                } catch (error) {
-                    console.error('HTML 텍스트 추출 실패:', error);
-                    return html.substring(0, 5000);
-                }
-            }
-            
-            // ===== PDF 파일 실제 읽기 =====
-            async extractPdfText(file) {
-                try {
-                    console.log(`📄 PDF 읽는 중: ${file.name}`);
-                    
-                    const arrayBuffer = await file.arrayBuffer();
-                    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-                    
-                    let fullText = '';
-                    const maxPages = Math.min(pdf.numPages, 10); // 최대 10페이지만
-                    
-                    for (let i = 1; i <= maxPages; i++) {
-                        const page = await pdf.getPage(i);
-                        const textContent = await page.getTextContent();
-                        
-                        const pageText = textContent.items
-                            .map(item => item.str)
-                            .join(' ')
-                            .replace(/\s+/g, ' ')
-                            .trim();
-                        
-                        fullText += pageText + '\n\n';
-                        
-                        // 최대 10,000자 제한
-                        if (fullText.length > 10000) {
-                            fullText = fullText.substring(0, 10000) + '... (내용 생략)';
-                            break;
-                        }
-                    }
-                    
-                    console.log(`✅ PDF 읽기 성공: ${file.name} (${fullText.length}자, ${maxPages}페이지)`);
-                    return fullText;
-                    
-                } catch (error) {
-                    console.error(`❌ PDF 읽기 실패 (${file.name}):`, error);
-                    return `PDF 읽기 실패: ${file.name} (${error.message})`;
-                }
-            }
-            
-            // ===== 참고자료 종합 처리 =====
-            async processReferenceData(queueItem) {
-                let processedReferences = '';
-                
-                try {
-                    // URL 콘텐츠 읽기
-                    if (queueItem.referenceUrls && queueItem.referenceUrls.length > 0) {
-                        console.log(`🌐 ${queueItem.referenceUrls.length}개 URL 처리 시작`);
-                        
-                        for (let i = 0; i < Math.min(queueItem.referenceUrls.length, 3); i++) {
-                            const url = queueItem.referenceUrls[i];
-                            const content = await this.fetchUrlContent(url);
-                            
-                            processedReferences += `\n\n=== 참고자료 ${i + 1}: ${url} ===\n${content}\n`;
-                        }
-                    }
-                    
-                    // PDF 파일 읽기
-                    if (queueItem.pdfFiles && queueItem.pdfFiles.length > 0) {
-                        console.log(`📄 ${queueItem.pdfFiles.length}개 PDF 처리 시작`);
-                        
-                        for (let i = 0; i < Math.min(queueItem.pdfFiles.length, 2); i++) {
-                            const pdfInfo = queueItem.pdfFiles[i];
-                            
-                            // 실제 파일 객체 찾기 (브라우저에서 업로드된 파일)
-                            const fileInputs = document.querySelectorAll('input[type="file"]');
-                            let actualFile = null;
-                            
-                            for (let input of fileInputs) {
-                                for (let file of input.files) {
-                                    if (file.name === pdfInfo.name && file.size === pdfInfo.size) {
-                                        actualFile = file;
-                                        break;
-                                    }
-                                }
-                                if (actualFile) break;
-                            }
-                            
-                            if (actualFile) {
-                                const pdfText = await this.extractPdfText(actualFile);
-                                processedReferences += `\n\n=== PDF 자료 ${i + 1}: ${pdfInfo.name} ===\n${pdfText}\n`;
-                            } else {
-                                processedReferences += `\n\n=== PDF 자료 ${i + 1}: ${pdfInfo.name} ===\n파일을 찾을 수 없습니다.\n`;
-                            }
-                        }
-                    }
-                    
-                    console.log(`✅ 참고자료 처리 완료: ${processedReferences.length}자`);
-                    return processedReferences;
-                    
-                } catch (error) {
-                    console.error('❌ 참고자료 처리 중 오류:', error);
-                    return `참고자료 처리 중 오류가 발생했습니다: ${error.message}`;
-                }
-            }
-            
-            // ===== 실제 AI 글 생성 (참고자료 포함) =====
-            async generateBlogContent(queueItem) {
-                try {
-                    const startTime = Date.now();
-                    console.log(`🚀 실제 AI로 블로그 콘텐츠 생성 시작: "${queueItem.title}"`);
-                    
-                    if (!this.config.claude.apiKey && !this.config.openai.apiKey) {
-                        throw new Error('API 키가 설정되지 않았습니다. 설정 탭에서 API 키를 입력해주세요.');
-                    }
-                    
-                    // 참고자료 실제 읽기 및 처리
-                    console.log('📚 참고자료 처리 중...');
-                    const referenceContent = await this.processReferenceData(queueItem);
-                    
-                    // 강화된 프롬프트 생성
-                    const prompt = this.createAdvancedContentPrompt(queueItem, referenceContent);
-                    
-                    // AI API 호출
-                    let content;
-                    if (this.config.claude.apiKey) {
-                        try {
-                            content = await this.callClaudeAPI(prompt, queueItem);
-                            console.log('✅ Claude API 호출 성공');
-                        } catch (error) {
-                            console.log('❌ Claude 실패, OpenAI 시도:', error.message);
-                            if (this.config.openai.apiKey) {
-                                content = await this.callOpenAIAPI(prompt, queueItem);
-                                console.log('✅ OpenAI API 호출 성공');
-                            } else {
-                                throw error;
-                            }
-                        }
-                    } else if (this.config.openai.apiKey) {
-                        content = await this.callOpenAIAPI(prompt, queueItem);
-                        console.log('✅ OpenAI API 호출 성공');
-                    } else {
-                        throw new Error('사용 가능한 API 키가 없습니다.');
-                    }
-                    
-                    const responseTime = Date.now() - startTime;
-                    
-                    console.log(`✅ 실제 AI 콘텐츠 생성 완료: "${queueItem.title}" (${responseTime}ms)`);
-                    
-                    return {
-                        success: true,
-                        data: content,
-                        service: this.config.claude.apiKey ? 'claude' : 'openai',
-                        responseTime: responseTime,
-                        referencesProcessed: referenceContent.length > 0
-                    };
-                    
-                } catch (error) {
-                    console.error('❌ AI 콘텐츠 생성 실패:', error);
-                    
-                    return {
-                        success: false,
-                        error: error.message,
-                        service: 'none'
-                    };
-                }
-            }
-            
-            // ===== 강화된 프롬프트 생성 (실제 참고자료 포함) =====
-            createAdvancedContentPrompt(queueItem, referenceContent) {
-                let styleInstructions = '';
-                let experienceSection = '';
-                
-                // 학습된 말투 적용
-                if (this.writingStyle.samples.length >= 3) {
-                    const style = this.writingStyle.analyzedStyle;
-                    styleInstructions = `
+  <!-- ==================== PRICING ==================== -->
+  <section id="pricing" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="inline-flex items-center gap-2 bg-sage-50 rounded-full px-4 py-1.5 text-sage-600 text-sm font-medium mb-4">
+          <iconify-icon icon="solar:tag-price-bold"></iconify-icon>
+          요금제
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
+          나에게 맞는 플랜 선택
+        </h2>
+        <p class="text-gray-500 text-lg">부담 없이 무료로 시작하세요</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <!-- Free -->
+        <div class="glass rounded-3xl p-8 reveal reveal-delay-1">
+          <div class="mb-6">
+            <h3 class="font-bold text-xl mb-1">무료</h3>
+            <p class="text-sm text-gray-400">가볍게 시작하기</p>
+          </div>
+          <div class="mb-6">
+            <span class="text-4xl font-bold">0</span>
+            <span class="text-gray-400 text-sm">원/월</span>
+          </div>
+          <ul class="space-y-3 mb-8 text-sm text-gray-600">
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:check-circle-bold" class="text-sage-500 text-lg shrink-0"></iconify-icon>
+              AI 상담 하루 3회
+            </li>
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:check-circle-bold" class="text-sage-500 text-lg shrink-0"></iconify-icon>
+              감정 체크인
+            </li>
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:check-circle-bold" class="text-sage-500 text-lg shrink-0"></iconify-icon>
+              심리검사 1회
+            </li>
+            <li class="flex items-center gap-2 text-gray-300">
+              <iconify-icon icon="solar:close-circle-linear" class="text-lg shrink-0"></iconify-icon>
+              감정 분석 리포트
+            </li>
+            <li class="flex items-center gap-2 text-gray-300">
+              <iconify-icon icon="solar:close-circle-linear" class="text-lg shrink-0"></iconify-icon>
+              전문 상담사 매칭
+            </li>
+          </ul>
+          <button onclick="openModal('bookingModal')" class="cta-btn w-full py-3.5 rounded-xl border border-gray-200 text-gray-700 font-semibold hover:bg-gray-50 transition-colors">
+            무료로 시작하기
+          </button>
+        </div>
+        <!-- Basic - Popular -->
+        <div class="relative glass rounded-3xl p-8 ring-2 ring-sage-500 reveal reveal-delay-2">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-sage-500 text-white text-xs font-bold px-4 py-1 rounded-full">
+            가장 인기
+          </div>
+          <div class="mb-6">
+            <h3 class="font-bold text-xl mb-1">베이직</h3>
+            <p class="text-sm text-gray-400">꾸준한 마음 관리</p>
+          </div>
+          <div class="mb-6">
+            <span class="text-4xl font-bold">9,900</span>
+            <span class="text-gray-400 text-sm">원/월</span>
+          </div>
+          <ul class="space-y-3 mb-8 text-sm text-gray-600">
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:check-circle-bold" class="text-sage-500 text-lg shrink-0"></iconify-icon>
+              AI 상담 무제한
+            </li>
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:check-circle-bold" class="text-sage-500 text-lg shrink-0"></iconify-icon>
+              감정 체크인 + 분석 리포트
+            </li>
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:check-circle-bold" class="text-sage-500 text-lg shrink-0"></iconify-icon>
+              심리검사 무제한
+            </li>
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:check-circle-bold" class="text-sage-500 text-lg shrink-0"></iconify-icon>
+              전문상담 할인 쿠폰 월 1회
+            </li>
+            <li class="flex items-center gap-2 text-gray-300">
+              <iconify-icon icon="solar:close-circle-linear" class="text-lg shrink-0"></iconify-icon>
+              1:1 전문 상담 포함
+            </li>
+          </ul>
+          <button onclick="openModal('bookingModal')" class="cta-btn w-full py-3.5 rounded-xl bg-sage-500 hover:bg-sage-600 text-white font-semibold shadow-lg shadow-sage-500/20">
+            베이직 시작하기
+          </button>
+        </div>
+        <!-- Pro -->
+        <div class="glass rounded-3xl p-8 reveal reveal-delay-3">
+          <div class="mb-6">
+            <h3 class="font-bold text-xl mb-1">프로</h3>
+            <p class="text-sm text-gray-400">전문 상담 포함</p>
+          </div>
+          <div class="mb-6">
+            <span class="text-4xl font-bold">49,900</span>
+            <span class="text-gray-400 text-sm">원/월</span>
+          </div>
+          <ul class="space-y-3 mb-8 text-sm text-gray-600">
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:check-circle-bold" class="text-sage-500 text-lg shrink-0"></iconify-icon>
+              베이직 전체 포함
+            </li>
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:check-circle-bold" class="text-sage-500 text-lg shrink-0"></iconify-icon>
+              전문 상담사 1:1 상담 월 2회
+            </li>
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:check-circle-bold" class="text-sage-500 text-lg shrink-0"></iconify-icon>
+              화상/음성/채팅 선택
+            </li>
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:check-circle-bold" class="text-sage-500 text-lg shrink-0"></iconify-icon>
+              상담 후 맞춤 리포트
+            </li>
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:check-circle-bold" class="text-sage-500 text-lg shrink-0"></iconify-icon>
+              우선 예약 배정
+            </li>
+          </ul>
+          <button onclick="openModal('bookingModal')" class="cta-btn w-full py-3.5 rounded-xl border border-gray-200 text-gray-700 font-semibold hover:bg-gray-50 transition-colors">
+            프로 시작하기
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-**학습된 말투 적용:**
-- 문장 길이: ${style.sentenceLength === 'long' ? '긴 문장 선호 (50자 이상)' : 
-                style.sentenceLength === 'short' ? '짧은 문장 선호 (25자 이하)' : '적당한 길이 문장 (25-50자)'}
-- 톤: ${style.tone === 'friendly' ? '친근하고 따뜻한 톤' : '전문적이고 신뢰감 있는 톤'}
-- 어휘: ${style.vocabulary === 'professional' ? '전문적인 용어 적극 사용' : '쉬운 일상 용어 위주'}
-- 구조: ${style.structure === 'organized' ? '체계적인 소제목과 목록 구조' : '자연스러운 흐름'}
+  <!-- ==================== FINAL CTA ==================== -->
+  <section class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-sage-500 via-sage-600 to-sage-700"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse 80% 60% at 30% 40%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(ellipse 60% 80% at 70% 60%, rgba(130,80,184,0.15) 0%, transparent 50%);"></div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 reveal">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6">
+        오늘, 당신의 마음에<br>첫 번째 안부를 물어보세요
+      </h2>
+      <p class="text-sage-100 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+        작은 시작이 큰 변화를 만듭니다. 지금 무료로 시작하고, 마음이 편안해지는 경험을 느껴보세요.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button onclick="openModal('bookingModal')" class="cta-btn bg-white text-sage-700 font-semibold px-10 py-4 rounded-2xl text-lg shadow-xl hover:shadow-2xl flex items-center justify-center gap-2">
+          <iconify-icon icon="solar:calendar-bold" class="text-xl"></iconify-icon>
+          무료 상담 예약하기
+        </button>
+        <button onclick="openModal('chatModal')" class="cta-btn bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold px-10 py-4 rounded-2xl text-lg flex items-center justify-center gap-2">
+          <iconify-icon icon="solar:chat-round-dots-linear" class="text-xl"></iconify-icon>
+          AI 상담 먼저 체험
+        </button>
+      </div>
+      <p class="text-sage-200 text-sm mt-6">
+        <iconify-icon icon="solar:lock-bold" class="align-middle"></iconify-icon>
+        모든 상담 내용은 암호화되어 안전하게 보호됩니다
+      </p>
+    </div>
+  </section>
 
-**참고할 기존 글 스타일:**
-${this.writingStyle.samples.slice(-3).map(s => `"${s.content.substring(0, 200)}..."`).join('\n')}
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="py-16 border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div class="md:col-span-1">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 rounded-full bg-sage-500 flex items-center justify-center">
+              <iconify-icon icon="solar:leaf-bold" class="text-white text-sm"></iconify-icon>
+            </div>
+            <span class="font-bold text-sage-800 text-lg">마인드케어</span>
+          </div>
+          <p class="text-sm text-gray-400 leading-relaxed">마음도 관리가 필요하니까.<br>AI와 전문 상담사가 함께하는<br>당신만의 마음 관리 플랫폼.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-sm text-gray-900 mb-4">서비스</h4>
+          <ul class="space-y-2.5 text-sm text-gray-400">
+            <li><a href="#" onclick="openModal('chatModal');return false;" class="hover:text-sage-600 transition-colors">AI 상담</a></li>
+            <li><a href="#" onclick="openModal('assessmentModal');return false;" class="hover:text-sage-600 transition-colors">심리검사</a></li>
+            <li><a href="#" onclick="openModal('moodModal');return false;" class="hover:text-sage-600 transition-colors">감정 체크인</a></li>
+            <li><a href="#" onclick="openModal('bookingModal');return false;" class="hover:text-sage-600 transition-colors">상담 예약</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-sm text-gray-900 mb-4">고객 지원</h4>
+          <ul class="space-y-2.5 text-sm text-gray-400">
+            <li><a href="#" class="hover:text-sage-600 transition-colors">자주 묻는 질문</a></li>
+            <li><a href="#" class="hover:text-sage-600 transition-colors">이용약관</a></li>
+            <li><a href="#" class="hover:text-sage-600 transition-colors">개인정보처리방침</a></li>
+            <li><a href="#" class="hover:text-sage-600 transition-colors">상담사 지원</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-sm text-gray-900 mb-4">위기 상담</h4>
+          <ul class="space-y-2.5 text-sm text-gray-400">
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:phone-bold" class="text-rose-400"></iconify-icon>
+              자살예방상담전화 1393
+            </li>
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:phone-bold" class="text-rose-400"></iconify-icon>
+              정신건강위기 1577-0199
+            </li>
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:phone-bold" class="text-rose-400"></iconify-icon>
+              청소년전화 1388
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-100 pt-8 mb-6">
+        <div class="text-xs text-gray-300 leading-relaxed space-y-1">
+          <p class="font-medium text-gray-400">사업자 정보</p>
+          <p>상호: 루크파이브 | 대표: 백민정 | 사업자등록번호: 503-34-65865</p>
+          <p>주소: 경기도 수원시 영통구 광교중앙로25번길 92(원천동) | 개업일: 2026.02.03</p>
+        </div>
+      </div>
+      <div class="border-t border-gray-100 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-gray-300">2026 루크파이브. 본 서비스는 전문 의료 상담을 대체하지 않습니다.</p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="text-gray-300 hover:text-sage-500 transition-colors"><iconify-icon icon="solar:letter-bold" class="text-xl"></iconify-icon></a>
+          <a href="#" class="text-gray-300 hover:text-sage-500 transition-colors"><iconify-icon icon="solar:chat-round-dots-bold" class="text-xl"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-위 스타일을 참고하여 일관성 있는 톤으로 작성해주세요.`;
-                }
-                
-                // 개인 경험 섹션
-                if (queueItem.personalExperience && queueItem.personalExperience.trim()) {
-                    experienceSection = `
+  <!-- ==================== MODALS ==================== -->
 
-**💡 작성자의 실제 경험 및 노하우 (핵심 활용):**
-"${queueItem.personalExperience}"
+  <!-- BOOKING MODAL (핵심 예약 시스템) -->
+  <div id="bookingModal" class="modal-overlay" onclick="if(event.target===this)closeModal('bookingModal')">
+    <div class="modal-content">
+      <!-- Step indicator -->
+      <div class="p-6 border-b border-gray-100">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="font-bold text-xl">상담 예약</h2>
+          <button onclick="closeModal('bookingModal')" class="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors">
+            <iconify-icon icon="solar:close-circle-linear" class="text-xl text-gray-400"></iconify-icon>
+          </button>
+        </div>
+        <div class="flex items-center gap-2">
+          <div id="bookStep1Dot" class="w-8 h-1 rounded-full bg-sage-500 transition-all"></div>
+          <div id="bookStep2Dot" class="w-8 h-1 rounded-full bg-gray-200 transition-all"></div>
+          <div id="bookStep3Dot" class="w-8 h-1 rounded-full bg-gray-200 transition-all"></div>
+          <div id="bookStep4Dot" class="w-8 h-1 rounded-full bg-gray-200 transition-all"></div>
+        </div>
+      </div>
 
-**경험 활용 지침:**
-- 위 실제 경험을 글의 핵심 근거로 활용하세요
-- 구체적인 수치나 사례는 그대로 인용하되, 자연스럽게 녹여내세요
-- "실제로 경험해본 결과..." "저희 샵에서 적용한 방법은..." 등으로 표현
-- 성공/실패 사례는 객관적인 분석과 함께 제시하세요
-- 개인 경험을 일반화할 수 있는 원리나 법칙을 도출하세요`;
-                }
-                
-                // 실제 참고자료 내용 포함
-                let referenceSection = '';
-                if (referenceContent && referenceContent.trim()) {
-                    referenceSection = `
+      <!-- Step 1: 상담사 선택 -->
+      <div id="bookStep1" class="p-6">
+        <h3 class="font-semibold text-lg mb-4">상담사를 선택해 주세요</h3>
+        <div class="space-y-3" id="counselorList">
+          <label class="flex items-center gap-4 p-4 rounded-2xl border border-gray-200 hover:border-sage-300 cursor-pointer transition-colors has-[:checked]:border-sage-500 has-[:checked]:bg-sage-50">
+            <input type="radio" name="counselor" value="윤서현" class="hidden">
+            <img src="https://i.pravatar.cc/150?u=counselor-yoon" alt="윤서현" class="w-12 h-12 rounded-xl object-cover" loading="lazy" decoding="async">
+            <div class="flex-1">
+              <div class="font-semibold">윤서현</div>
+              <div class="text-xs text-gray-400">임상심리전문가 | 스트레스, 직장생활</div>
+            </div>
+            <iconify-icon icon="solar:check-circle-bold" class="text-sage-500 text-xl opacity-0 check-icon"></iconify-icon>
+          </label>
+          <label class="flex items-center gap-4 p-4 rounded-2xl border border-gray-200 hover:border-sage-300 cursor-pointer transition-colors has-[:checked]:border-sage-500 has-[:checked]:bg-sage-50">
+            <input type="radio" name="counselor" value="박도현" class="hidden">
+            <img src="https://i.pravatar.cc/150?u=counselor-park" alt="박도현" class="w-12 h-12 rounded-xl object-cover" loading="lazy" decoding="async">
+            <div class="flex-1">
+              <div class="font-semibold">박도현</div>
+              <div class="text-xs text-gray-400">전문상담사 1급 | 대인관계, 자존감</div>
+            </div>
+            <iconify-icon icon="solar:check-circle-bold" class="text-sage-500 text-xl opacity-0 check-icon"></iconify-icon>
+          </label>
+          <label class="flex items-center gap-4 p-4 rounded-2xl border border-gray-200 hover:border-sage-300 cursor-pointer transition-colors has-[:checked]:border-sage-500 has-[:checked]:bg-sage-50">
+            <input type="radio" name="counselor" value="이서진" class="hidden">
+            <img src="https://i.pravatar.cc/150?u=counselor-lee" alt="이서진" class="w-12 h-12 rounded-xl object-cover" loading="lazy" decoding="async">
+            <div class="flex-1">
+              <div class="font-semibold">이서진</div>
+              <div class="text-xs text-gray-400">정신건강임상심리사 1급 | 우울, 트라우마</div>
+            </div>
+            <iconify-icon icon="solar:check-circle-bold" class="text-sage-500 text-xl opacity-0 check-icon"></iconify-icon>
+          </label>
+        </div>
+        <button onclick="goBookStep(2)" class="cta-btn w-full mt-6 py-3.5 rounded-xl bg-sage-500 hover:bg-sage-600 text-white font-semibold disabled:opacity-40 disabled:cursor-not-allowed" id="bookStep1Btn" disabled>
+          다음: 날짜 선택
+          <iconify-icon icon="solar:arrow-right-linear" class="align-middle ml-1"></iconify-icon>
+        </button>
+      </div>
 
-**📚 실제 참고자료 내용 (반드시 활용):**
-${referenceContent}
+      <!-- Step 2: 날짜 & 시간 선택 -->
+      <div id="bookStep2" class="p-6 hidden">
+        <button onclick="goBookStep(1)" class="flex items-center gap-1 text-sm text-gray-400 hover:text-gray-600 mb-4 transition-colors">
+          <iconify-icon icon="solar:arrow-left-linear"></iconify-icon>
+          상담사 다시 선택
+        </button>
+        <h3 class="font-semibold text-lg mb-4">날짜를 선택해 주세요</h3>
+        <!-- Calendar -->
+        <div class="bg-white rounded-2xl border border-gray-100 p-4 mb-6">
+          <div class="flex items-center justify-between mb-4">
+            <button onclick="changeMonth(-1)" class="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center">
+              <iconify-icon icon="solar:arrow-left-linear" class="text-gray-500"></iconify-icon>
+            </button>
+            <span id="calendarMonth" class="font-semibold">2026년 4월</span>
+            <button onclick="changeMonth(1)" class="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center">
+              <iconify-icon icon="solar:arrow-right-linear" class="text-gray-500"></iconify-icon>
+            </button>
+          </div>
+          <div class="grid grid-cols-7 text-center text-xs text-gray-400 mb-2">
+            <span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span>
+          </div>
+          <div id="calendarGrid" class="grid grid-cols-7 text-center text-sm gap-1"></div>
+        </div>
+        <!-- Time Slots -->
+        <h3 class="font-semibold text-lg mb-3" id="timeSlotTitle" style="display:none;">시간을 선택해 주세요</h3>
+        <div id="timeSlots" class="grid grid-cols-3 gap-2 mb-6"></div>
+        <button onclick="goBookStep(3)" class="cta-btn w-full py-3.5 rounded-xl bg-sage-500 hover:bg-sage-600 text-white font-semibold disabled:opacity-40 disabled:cursor-not-allowed" id="bookStep2Btn" disabled>
+          다음: 상담 방식
+          <iconify-icon icon="solar:arrow-right-linear" class="align-middle ml-1"></iconify-icon>
+        </button>
+      </div>
 
-**참고자료 활용 지침:**
-- 위 참고자료의 핵심 내용을 분석하여 글에 반영하세요
-- 직접 인용할 때는 반드시 출처를 명시하세요: [출처: 사이트명 또는 연구명]
-- 데이터나 통계는 정확한 수치와 함께 출처를 밝히세요
-- 상반된 의견이 있다면 객관적으로 비교 분석하세요
-- 참고자료를 바탕으로 한 추가 인사이트를 제공하세요
-- 여러 자료의 내용을 종합하여 새로운 관점을 제시하세요`;
-                }
-                
-                return `당신은 헤어케어 분야의 최고 전문가이자 경험 많은 디자이너입니다. 제공된 참고자료와 실제 경험을 바탕으로 실무에서 바로 적용할 수 있는 깊이 있고 전문적인 헤어케어 콘텐츠를 작성해주세요.
+      <!-- Step 3: 상담 유형 선택 -->
+      <div id="bookStep3" class="p-6 hidden">
+        <button onclick="goBookStep(2)" class="flex items-center gap-1 text-sm text-gray-400 hover:text-gray-600 mb-4 transition-colors">
+          <iconify-icon icon="solar:arrow-left-linear"></iconify-icon>
+          날짜/시간 다시 선택
+        </button>
+        <h3 class="font-semibold text-lg mb-4">상담 방식을 선택해 주세요</h3>
+        <div class="space-y-3" id="sessionTypeList">
+          <label class="flex items-center gap-4 p-4 rounded-2xl border border-gray-200 hover:border-sage-300 cursor-pointer transition-colors has-[:checked]:border-sage-500 has-[:checked]:bg-sage-50">
+            <input type="radio" name="sessionType" value="video" class="hidden">
+            <div class="w-12 h-12 rounded-xl bg-sage-50 flex items-center justify-center shrink-0">
+              <iconify-icon icon="solar:videocamera-record-bold" class="text-sage-600 text-xl"></iconify-icon>
+            </div>
+            <div class="flex-1">
+              <div class="font-semibold">화상 상담</div>
+              <div class="text-xs text-gray-400">카메라를 켜고 얼굴을 보며 상담</div>
+            </div>
+            <span class="text-sm font-semibold text-sage-600">50분</span>
+          </label>
+          <label class="flex items-center gap-4 p-4 rounded-2xl border border-gray-200 hover:border-sage-300 cursor-pointer transition-colors has-[:checked]:border-sage-500 has-[:checked]:bg-sage-50">
+            <input type="radio" name="sessionType" value="voice" class="hidden">
+            <div class="w-12 h-12 rounded-xl bg-lavender-50 flex items-center justify-center shrink-0">
+              <iconify-icon icon="solar:phone-calling-bold" class="text-lavender-500 text-xl"></iconify-icon>
+            </div>
+            <div class="flex-1">
+              <div class="font-semibold">음성 상담</div>
+              <div class="text-xs text-gray-400">전화처럼 목소리로만 진행</div>
+            </div>
+            <span class="text-sm font-semibold text-sage-600">50분</span>
+          </label>
+          <label class="flex items-center gap-4 p-4 rounded-2xl border border-gray-200 hover:border-sage-300 cursor-pointer transition-colors has-[:checked]:border-sage-500 has-[:checked]:bg-sage-50">
+            <input type="radio" name="sessionType" value="chat" class="hidden">
+            <div class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center shrink-0">
+              <iconify-icon icon="solar:chat-round-dots-bold" class="text-amber-500 text-xl"></iconify-icon>
+            </div>
+            <div class="flex-1">
+              <div class="font-semibold">채팅 상담</div>
+              <div class="text-xs text-gray-400">텍스트로 편하게 소통</div>
+            </div>
+            <span class="text-sm font-semibold text-sage-600">50분</span>
+          </label>
+        </div>
+        <button onclick="goBookStep(4)" class="cta-btn w-full mt-6 py-3.5 rounded-xl bg-sage-500 hover:bg-sage-600 text-white font-semibold disabled:opacity-40 disabled:cursor-not-allowed" id="bookStep3Btn" disabled>
+          다음: 예약 확인
+          <iconify-icon icon="solar:arrow-right-linear" class="align-middle ml-1"></iconify-icon>
+        </button>
+      </div>
 
-**글 정보:**
-- 타겟 독자: ${queueItem.targetAudience}
-- 글 제목: ${queueItem.title}
-- 핵심 키워드: ${queueItem.keywords.join(', ')}
-- 톤 앤 매너: ${queueItem.tone}${styleInstructions}${referenceSection}${experienceSection}
+      <!-- Step 4: 예약 확인 -->
+      <div id="bookStep4" class="p-6 hidden">
+        <button onclick="goBookStep(3)" class="flex items-center gap-1 text-sm text-gray-400 hover:text-gray-600 mb-4 transition-colors">
+          <iconify-icon icon="solar:arrow-left-linear"></iconify-icon>
+          상담 방식 다시 선택
+        </button>
+        <h3 class="font-semibold text-lg mb-5">예약 정보를 확인해 주세요</h3>
+        <div class="bg-white rounded-2xl border border-gray-100 p-5 space-y-4 mb-6">
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-400">상담사</span>
+            <span class="font-semibold text-sm" id="confirmCounselor">-</span>
+          </div>
+          <div class="border-t border-gray-50"></div>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-400">날짜</span>
+            <span class="font-semibold text-sm" id="confirmDate">-</span>
+          </div>
+          <div class="border-t border-gray-50"></div>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-400">시간</span>
+            <span class="font-semibold text-sm" id="confirmTime">-</span>
+          </div>
+          <div class="border-t border-gray-50"></div>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-400">상담 방식</span>
+            <span class="font-semibold text-sm" id="confirmType">-</span>
+          </div>
+          <div class="border-t border-gray-50"></div>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-400">상담 시간</span>
+            <span class="font-semibold text-sm">50분</span>
+          </div>
+        </div>
+        <div class="bg-sage-50 rounded-2xl p-4 mb-6">
+          <p class="text-sm text-sage-700 leading-relaxed">
+            <iconify-icon icon="solar:info-circle-bold" class="align-middle mr-1"></iconify-icon>
+            예약 확정 후 카카오톡/문자로 안내가 발송됩니다. 상담 24시간 전까지 무료 취소가 가능합니다.
+          </p>
+        </div>
+        <button onclick="confirmBooking()" class="cta-btn w-full py-4 rounded-xl bg-sage-500 hover:bg-sage-600 text-white font-semibold text-lg shadow-lg shadow-sage-500/20">
+          <iconify-icon icon="solar:calendar-check-bold" class="align-middle mr-1 text-xl"></iconify-icon>
+          예약 확정하기
+        </button>
+      </div>
 
-**전문가급 작성 요구사항:**
+      <!-- Step 5: 예약 완료 -->
+      <div id="bookStep5" class="p-6 hidden text-center">
+        <div class="w-20 h-20 rounded-full bg-sage-50 flex items-center justify-center mx-auto mb-6">
+          <iconify-icon icon="solar:check-circle-bold" class="text-sage-500 text-4xl"></iconify-icon>
+        </div>
+        <h3 class="font-bold text-2xl mb-2">예약이 완료되었습니다</h3>
+        <p class="text-gray-500 mb-6">상담 시간에 맞춰 안내를 보내드릴게요.</p>
+        <div class="bg-white rounded-2xl border border-gray-100 p-5 text-left space-y-3 mb-6">
+          <div class="flex items-center justify-between text-sm">
+            <span class="text-gray-400">상담사</span>
+            <span class="font-semibold" id="doneCounselor">-</span>
+          </div>
+          <div class="flex items-center justify-between text-sm">
+            <span class="text-gray-400">일시</span>
+            <span class="font-semibold" id="doneDateTime">-</span>
+          </div>
+          <div class="flex items-center justify-between text-sm">
+            <span class="text-gray-400">방식</span>
+            <span class="font-semibold" id="doneType">-</span>
+          </div>
+        </div>
+        <button onclick="closeModal('bookingModal');resetBooking();" class="cta-btn w-full py-3.5 rounded-xl bg-sage-500 hover:bg-sage-600 text-white font-semibold">
+          확인
+        </button>
+      </div>
+    </div>
+  </div>
 
-1. **참고자료 완전 활용**
-   - 제공된 모든 참고자료의 핵심 내용을 반드시 분석하고 활용
-   - URL 콘텐츠와 PDF 자료의 정보를 종합하여 통찰력 있는 글 작성
-   - 자료 간 연관성을 찾아 새로운 관점 제시
-   - 출처 표기를 정확하게 하여 신뢰성 확보
+  <!-- CHAT MODAL -->
+  <div id="chatModal" class="modal-overlay" onclick="if(event.target===this)closeModal('chatModal')">
+    <div class="modal-content flex flex-col" style="height:85vh;">
+      <div class="p-5 border-b border-gray-100 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-sage-100 flex items-center justify-center">
+            <iconify-icon icon="solar:chat-round-dots-bold" class="text-sage-600 text-lg"></iconify-icon>
+          </div>
+          <div>
+            <div class="font-semibold">AI 마음 상담</div>
+            <div class="text-xs text-sage-500 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>
+              대화 가능
+            </div>
+          </div>
+        </div>
+        <button onclick="closeModal('chatModal')" class="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center">
+          <iconify-icon icon="solar:close-circle-linear" class="text-xl text-gray-400"></iconify-icon>
+        </button>
+      </div>
+      <div id="chatMessages" class="flex-1 overflow-y-auto p-5 space-y-4">
+        <div class="chat-bubble-ai px-4 py-3 text-sm max-w-[85%]">
+          안녕하세요. 마인드케어 AI 상담사입니다. 오늘 하루는 어떠셨나요? 편하게 이야기해 주세요.
+        </div>
+      </div>
+      <div class="p-4 border-t border-gray-100 shrink-0">
+        <p class="text-xs text-gray-300 mb-2 text-center">AI 상담은 전문 의료 상담을 대체하지 않습니다</p>
+        <div class="flex gap-2">
+          <input id="chatInput" type="text" placeholder="메시지를 입력하세요..." class="flex-1 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-sage-400 transition-colors" onkeydown="if(event.key==='Enter')sendChat()">
+          <button onclick="sendChat()" class="cta-btn bg-sage-500 hover:bg-sage-600 text-white px-4 rounded-xl flex items-center justify-center">
+            <iconify-icon icon="solar:plain-bold" class="text-lg"></iconify-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-2. **깊이와 전문성**
-   - 표면적인 정보가 아닌 업계 인사이더만 아는 노하우 포함
-   - 실제 수치, 데이터, 사례를 구체적으로 제시
-   - 일반적인 상식을 넘어선 전문적 관점 제공
-   - 현장에서 검증된 실무 팁과 주의사항
+  <!-- MOOD MODAL -->
+  <div id="moodModal" class="modal-overlay" onclick="if(event.target===this)closeModal('moodModal')">
+    <div class="modal-content">
+      <div class="p-6 border-b border-gray-100 flex items-center justify-between">
+        <h2 class="font-bold text-xl">오늘의 감정 체크인</h2>
+        <button onclick="closeModal('moodModal')" class="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center">
+          <iconify-icon icon="solar:close-circle-linear" class="text-xl text-gray-400"></iconify-icon>
+        </button>
+      </div>
+      <div class="p-6">
+        <p class="text-gray-500 mb-6">오늘 기분이 어떤가요?</p>
+        <div class="flex justify-center gap-4 mb-6" id="moodPicker">
+          <button onclick="pickMood(this,'great')" class="mood-btn flex flex-col items-center gap-1 p-3 rounded-2xl">
+            <span class="text-4xl">&#128516;</span>
+            <span class="text-xs text-gray-500">좋음</span>
+          </button>
+          <button onclick="pickMood(this,'okay')" class="mood-btn flex flex-col items-center gap-1 p-3 rounded-2xl">
+            <span class="text-4xl">&#128522;</span>
+            <span class="text-xs text-gray-500">괜찮음</span>
+          </button>
+          <button onclick="pickMood(this,'neutral')" class="mood-btn flex flex-col items-center gap-1 p-3 rounded-2xl">
+            <span class="text-4xl">&#128528;</span>
+            <span class="text-xs text-gray-500">보통</span>
+          </button>
+          <button onclick="pickMood(this,'sad')" class="mood-btn flex flex-col items-center gap-1 p-3 rounded-2xl">
+            <span class="text-4xl">&#128546;</span>
+            <span class="text-xs text-gray-500">슬픔</span>
+          </button>
+          <button onclick="pickMood(this,'anxious')" class="mood-btn flex flex-col items-center gap-1 p-3 rounded-2xl">
+            <span class="text-4xl">&#128560;</span>
+            <span class="text-xs text-gray-500">불안</span>
+          </button>
+        </div>
+        <textarea id="moodNote" placeholder="한줄 메모 (선택)" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-sage-400 resize-none h-20 mb-4"></textarea>
+        <div id="moodHistory" class="mb-4"></div>
+        <button onclick="saveMood()" id="moodSaveBtn" class="cta-btn w-full py-3.5 rounded-xl bg-sage-500 hover:bg-sage-600 text-white font-semibold disabled:opacity-40" disabled>
+          기록하기
+        </button>
+      </div>
+    </div>
+  </div>
 
-3. **실무 적용성**
-   - 독자가 바로 실행할 수 있는 구체적 방법 제시
-   - 단계별 실행 가이드 포함
-   - 예상되는 문제점과 해결책 미리 제시
-   - 비용, 시간, 효과 등 현실적 고려사항 포함
+  <!-- ASSESSMENT MODAL -->
+  <div id="assessmentModal" class="modal-overlay" onclick="if(event.target===this)closeModal('assessmentModal')">
+    <div class="modal-content">
+      <div class="p-6 border-b border-gray-100 flex items-center justify-between">
+        <h2 class="font-bold text-xl" id="assessTitle">심리검사 선택</h2>
+        <button onclick="closeModal('assessmentModal');resetAssessment();" class="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center">
+          <iconify-icon icon="solar:close-circle-linear" class="text-xl text-gray-400"></iconify-icon>
+        </button>
+      </div>
+      <!-- Test selection -->
+      <div id="assessSelect" class="p-6">
+        <p class="text-gray-500 mb-6">어떤 검사를 해보시겠어요?</p>
+        <div class="space-y-3">
+          <button onclick="startAssessment('PHQ9')" class="w-full flex items-center gap-4 p-5 rounded-2xl border border-gray-200 hover:border-sage-300 hover:bg-sage-50/50 transition-all text-left">
+            <div class="w-12 h-12 rounded-xl bg-lavender-50 flex items-center justify-center shrink-0">
+              <iconify-icon icon="solar:clipboard-check-bold" class="text-lavender-500 text-xl"></iconify-icon>
+            </div>
+            <div>
+              <div class="font-semibold mb-0.5">우울 자가진단 (PHQ-9)</div>
+              <div class="text-xs text-gray-400">9문항 | 약 3분 소요</div>
+            </div>
+          </button>
+          <button onclick="startAssessment('GAD7')" class="w-full flex items-center gap-4 p-5 rounded-2xl border border-gray-200 hover:border-sage-300 hover:bg-sage-50/50 transition-all text-left">
+            <div class="w-12 h-12 rounded-xl bg-sage-50 flex items-center justify-center shrink-0">
+              <iconify-icon icon="solar:clipboard-check-bold" class="text-sage-600 text-xl"></iconify-icon>
+            </div>
+            <div>
+              <div class="font-semibold mb-0.5">불안 자가진단 (GAD-7)</div>
+              <div class="text-xs text-gray-400">7문항 | 약 2분 소요</div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <!-- Questions -->
+      <div id="assessQuestions" class="p-6 hidden">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm text-gray-400" id="assessProgress">질문 1/9</span>
+          <span class="text-sm font-medium text-sage-600" id="assessType">PHQ-9</span>
+        </div>
+        <div class="w-full bg-gray-100 rounded-full h-1.5 mb-6">
+          <div id="assessBar" class="progress-fill bg-sage-500 h-1.5 rounded-full" style="width:11%"></div>
+        </div>
+        <p id="assessQuestion" class="text-lg font-medium leading-relaxed mb-6"></p>
+        <p class="text-xs text-gray-400 mb-3">지난 2주 동안 얼마나 자주 시달렸나요?</p>
+        <div class="space-y-2" id="assessOptions">
+          <button onclick="answerAssess(0)" class="w-full text-left px-4 py-3.5 rounded-xl border border-gray-200 hover:border-sage-300 hover:bg-sage-50/50 text-sm transition-all">전혀 없음 (0일)</button>
+          <button onclick="answerAssess(1)" class="w-full text-left px-4 py-3.5 rounded-xl border border-gray-200 hover:border-sage-300 hover:bg-sage-50/50 text-sm transition-all">며칠 동안 (1~6일)</button>
+          <button onclick="answerAssess(2)" class="w-full text-left px-4 py-3.5 rounded-xl border border-gray-200 hover:border-sage-300 hover:bg-sage-50/50 text-sm transition-all">1주일 이상 (7~11일)</button>
+          <button onclick="answerAssess(3)" class="w-full text-left px-4 py-3.5 rounded-xl border border-gray-200 hover:border-sage-300 hover:bg-sage-50/50 text-sm transition-all">거의 매일 (12~14일)</button>
+        </div>
+      </div>
+      <!-- Result -->
+      <div id="assessResult" class="p-6 hidden text-center">
+        <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4" id="assessResultIcon"></div>
+        <h3 class="font-bold text-2xl mb-2" id="assessResultTitle"></h3>
+        <p class="text-gray-500 mb-2" id="assessResultScore"></p>
+        <p class="text-gray-500 leading-relaxed mb-6 text-sm" id="assessResultDesc"></p>
+        <div class="bg-sage-50 rounded-2xl p-4 mb-6 text-left">
+          <p class="text-sm text-sage-700" id="assessResultAdvice"></p>
+        </div>
+        <div class="flex gap-3">
+          <button onclick="resetAssessment()" class="flex-1 cta-btn py-3 rounded-xl border border-gray-200 font-semibold hover:bg-gray-50">다른 검사</button>
+          <button onclick="closeModal('assessmentModal');resetAssessment();openModal('bookingModal');" class="flex-1 cta-btn py-3 rounded-xl bg-sage-500 hover:bg-sage-600 text-white font-semibold">상담 예약</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-4. **글 구조 (2500-4000자)**
-   - ## 도입부: 문제 제기와 글의 가치 제시 (참고자료 언급)
-   - ### 본문 1: 이론적 배경과 전문 지식 (참고자료 활용)
-   - ### 본문 2: 실제 경험과 사례 분석 (개인 경험 활용)
-   - ### 본문 3: 구체적 실행 방법과 팁 (종합적 제시)
-   - ### 본문 4: 주의사항과 고급 노하우 (전문가 관점)
-   - ## 결론: 핵심 요약과 실행 로드맵
-
-5. **신뢰성과 윤리성**
-   - 과장된 표현 금지 (예: "100% 보장", "완벽한 해결")
-   - 개인차가 있을 수 있음을 명시
-   - 전문가 상담이 필요한 경우 안내
-   - 참고자료 출처 정확히 표기
-
-**최종 목표**: ${queueItem.targetAudience}가 읽고 나서 "이 정보는 정말 전문적이고 실용적이다. 실제 자료를 바탕으로 한 신뢰할 만한 글이다"라고 생각할 수 있는 수준의 콘텐츠
-
-**중요**: 제공된 참고자료와 개인 경험을 최대한 활용하여 일반적인 AI 글과 차별화된 전문성을 보여주세요. 단순 정보 나열이 아닌, 독자에게 진정한 가치를 제공하는 실질적인 글을 작성해주세요.
-
-헤어케어 전문 블로그 글만 작성해주세요 (다른 설명이나 주석은 제외):`;
-            }
-            
-            // ===== Claude API 호출 (프록시 포함) =====
-            async callClaudeAPI(prompt, queueItem) {
-                // 여러 방법으로 CORS 우회 시도
-                const methods = [
-                    () => this.directClaudeCall(prompt),
-                    () => this.proxyClaudeCall(prompt, 'https://api.allorigins.win/raw?url='),
-                    () => this.proxyClaudeCall(prompt, 'https://corsproxy.io/?')
-                ];
-                
-                for (let i = 0; i < methods.length; i++) {
-                    try {
-                        const result = await methods[i]();
-                        console.log(`✅ Claude 호출 성공 (방법 ${i + 1})`);
-                        return this.formatResponse(result, queueItem);
-                    } catch (error) {
-                        console.log(`❌ Claude 방법 ${i + 1} 실패:`, error.message);
-                        if (i === methods.length - 1) {
-                            throw error;
-                        }
-                    }
-                }
-            }
-            
-            // Claude 직접 호출
-            async directClaudeCall(prompt) {
-                const response = await fetch(this.config.claude.baseURL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-api-key': this.config.claude.apiKey,
-                        'anthropic-version': '2023-06-01'
-                    },
-                    body: JSON.stringify({
-                        model: this.config.claude.model,
-                        max_tokens: 4000,
-                        messages: [{
-                            role: 'user',
-                            content: prompt
-                        }]
-                    })
-                });
-                
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    throw new Error(`Claude API 오류 (${response.status}): ${errorText}`);
-                }
-                
-                const result = await response.json();
-                return result.content[0].text;
-            }
-            
-            // Claude 프록시 호출
-            async proxyClaudeCall(prompt, proxyUrl) {
-                const targetUrl = encodeURIComponent(this.config.claude.baseURL);
-                
-                const response = await fetch(proxyUrl + targetUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-api-key': this.config.claude.apiKey,
-                        'anthropic-version': '2023-06-01',
-                        'X-Requested-With': 'XMLHttpRequest'
-                    },
-                    body: JSON.stringify({
-                        model: this.config.claude.model,
-                        max_tokens: 4000,
-                        messages: [{
-                            role: 'user',
-                            content: prompt
-                        }]
-                    })
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`프록시 호출 실패 (${response.status})`);
-                }
-                
-                const result = await response.json();
-                
-                // 프록시 응답 파싱
-                let content;
-                if (result.contents) {
-                    content = JSON.parse(result.contents).content[0].text;
-                } else if (result.content) {
-                    content = result.content[0].text;
-                } else {
-                    throw new Error('프록시 응답 파싱 실패');
-                }
-                
-                return content;
-            }
-            
-            // ===== OpenAI API 호출 =====
-            async callOpenAIAPI(prompt, queueItem) {
-                const response = await fetch(this.config.openai.baseURL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${this.config.openai.apiKey}`
-                    },
-                    body: JSON.stringify({
-                        model: 'gpt-4o',
-                        messages: [{
-                            role: 'user',
-                            content: prompt
-                        }],
-                        max_tokens: 4000,
-                        temperature: 0.7
-                    })
-                });
-                
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    throw new Error(`OpenAI API 오류 (${response.status}): ${errorText}`);
-                }
-                
-                const result = await response.json();
-                const generatedText = result.choices[0].message.content;
-                
-                return this.formatResponse(generatedText, queueItem);
-            }
-            
-            // 응답 포맷팅
-            formatResponse(content, queueItem) {
-                return {
-                    title: queueItem.title,
-                    content: content,
-                    metaDescription: this.generateMetaDescription(content),
-                    keywords: queueItem.keywords,
-                    targetAudience: queueItem.targetAudience,
-                    tone: queueItem.tone,
-                    wordCount: content.length
-                };
-            }
-            
-            // 메타 설명 생성
-            generateMetaDescription(content) {
-                const firstParagraph = content.split('\n\n')[0] || '';
-                let metaDesc = firstParagraph.replace(/[#*`]/g, '').trim();
-                
-                if (metaDesc.length > 150) {
-                    metaDesc = metaDesc.substring(0, 147) + '...';
-                }
-                
-                return metaDesc;
-            }
-            
-            // API 키 설정
-            setAPIKey(service, key) {
-                if (service === 'claude') {
-                    this.config.claude.apiKey = key;
-                    console.log('✅ Claude API 키 설정 완료');
-                    this.checkConnectionStatus('claude');
-                } else if (service === 'openai') {
-                    this.config.openai.apiKey = key;
-                    console.log('✅ OpenAI API 키 설정 완료');
-                    this.checkConnectionStatus('openai');
-                }
-                return true;
-            }
-            
-            // 연결 상태 체크
-            async checkConnectionStatus(service) {
-                try {
-                    const result = await this.testConnection(service);
-                    this.connectionStatus[service] = result.success;
-                    this.connectionStatus.lastChecked = new Date().toISOString();
-                    
-                    this.updateConnectionUI(service, result.success);
-                    
-                    if (result.success) {
-                        console.log(`✅ ${service.toUpperCase()} 연결 성공`);
-                    } else {
-                        console.warn(`❌ ${service.toUpperCase()} 연결 실패: ${result.message}`);
-                        console.warn('💡 실제 글 작성 시 프록시나 백업 방법을 시도합니다.');
-                    }
-                    
-                    return result.success;
-                } catch (error) {
-                    console.error(`❌ ${service.toUpperCase()} 연결 체크 중 오류:`, error);
-                    this.connectionStatus[service] = false;
-                    this.updateConnectionUI(service, false);
-                    return false;
-                }
-            }
-            
-            // 연결 상태 UI 업데이트
-            updateConnectionUI(service, isConnected) {
-                const statusElement = document.getElementById(`${service}Status`);
-                if (statusElement) {
-                    if (isConnected) {
-                        statusElement.textContent = '연결됨';
-                        statusElement.style.color = '#16a34a';
-                    } else {
-                        statusElement.textContent = 'API키 설정됨 (CORS 제한)';
-                        statusElement.style.color = '#f59e0b';
-                    }
-                }
-            }
-            
-            // 말투 학습 샘플 추가
-            addWritingSample(title, content, category = 'general') {
-                const sample = {
-                    id: Date.now(),
-                    title,
-                    content,
-                    category,
-                    timestamp: new Date().toISOString(),
-                    wordCount: content.length
-                };
-                
-                this.writingStyle.samples.push(sample);
-                
-                if (this.writingStyle.samples.length > 20) {
-                    this.writingStyle.samples.shift();
-                }
-                
-                this.analyzeWritingStyle();
-                this.saveWritingStyle();
-                
-                console.log('📚 말투 학습 샘플 추가됨:', title);
-                this.updateWritingSamplesUI();
-                
-                return sample;
-            }
-            
-            // 말투 분석
-            analyzeWritingStyle() {
-                if (this.writingStyle.samples.length < 3) {
-                    console.log('📊 말투 분석을 위해 최소 3개의 샘플이 필요합니다.');
-                    return;
-                }
-                
-                const allContent = this.writingStyle.samples.map(s => s.content).join(' ');
-                
-                const sentences = allContent.split(/[.!?]/).filter(s => s.trim().length > 0);
-                const avgSentenceLength = sentences.reduce((sum, s) => sum + s.length, 0) / sentences.length;
-                
-                const friendlyWords = ['안녕', '감사', '좋아', '멋진', '훌륭한', '최고'];
-                const professionalWords = ['전문', '체계적', '효과적', '분석', '권장', '제안'];
-                
-                const friendlyCount = friendlyWords.reduce((count, word) => 
-                    count + (allContent.match(new RegExp(word, 'g')) || []).length, 0);
-                const professionalCount = professionalWords.reduce((count, word) => 
-                    count + (allContent.match(new RegExp(word, 'g')) || []).length, 0);
-                
-                this.writingStyle.analyzedStyle = {
-                    sentenceLength: avgSentenceLength > 50 ? 'long' : avgSentenceLength > 25 ? 'medium' : 'short',
-                    tone: friendlyCount > professionalCount ? 'friendly' : 'professional',
-                    vocabulary: professionalCount > 5 ? 'professional' : 'casual',
-                    structure: allContent.includes('###') ? 'organized' : 'simple'
-                };
-                
-                console.log('🎯 말투 분석 완료:', this.writingStyle.analyzedStyle);
-            }
-            
-            // 말투 학습 데이터 저장
-            saveWritingStyle() {
-                try {
-                    localStorage.setItem('hairgator_writing_style', JSON.stringify(this.writingStyle));
-                } catch (error) {
-                    console.warn('말투 학습 데이터 저장 실패:', error);
-                }
-            }
-            
-            // 말투 학습 데이터 로드
-            loadWritingStyle() {
-                try {
-                    const saved = localStorage.getItem('hairgator_writing_style');
-                    if (saved) {
-                        this.writingStyle = JSON.parse(saved);
-                        console.log('📚 저장된 말투 학습 데이터 로드됨:', this.writingStyle.samples.length + '개 샘플');
-                    }
-                } catch (error) {
-                    console.warn('말투 학습 데이터 로드 실패:', error);
-                }
-            }
-            
-            // 말투 학습 샘플 UI 업데이트
-            updateWritingSamplesUI() {
-                const container = document.getElementById('writingSamplesList');
-                if (!container) return;
-                
-                container.innerHTML = '';
-                
-                this.writingStyle.samples.slice(-10).reverse().forEach(sample => {
-                    const sampleDiv = document.createElement('div');
-                    sampleDiv.style.cssText = 'padding: 1rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); margin-bottom: 0.5rem; background: var(--white);';
-                    sampleDiv.innerHTML = `
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                            <span style="font-weight: var(--font-weight-semibold); color: var(--text-primary);">${sample.title}</span>
-                            <span style="font-size: 0.75rem; color: var(--text-muted);">${new Date(sample.timestamp).toLocaleDateString()}</span>
-                        </div>
-                        <div style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 0.5rem;">${sample.content.substring(0, 100)}...</div>
-                        <button onclick="AIService.removeWritingSample(${sample.id})" style="background: var(--error); color: var(--white); border: none; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; cursor: pointer;">삭제</button>
-                    `;
-                    container.appendChild(sampleDiv);
-                });
-            }
-            
-            // 말투 샘플 삭제
-            removeWritingSample(sampleId) {
-                this.writingStyle.samples = this.writingStyle.samples.filter(s => s.id !== sampleId);
-                this.saveWritingStyle();
-                this.updateWritingSamplesUI();
-                this.analyzeWritingStyle();
-            }
-            
-            // 연결 테스트
-            async testConnection(service = 'claude') {
-                try {
-                    if (service === 'claude') {
-                        if (!this.config.claude.apiKey) {
-                            return {
-                                success: false,
-                                service: 'claude',
-                                message: 'Claude API 키가 설정되지 않았습니다.'
-                            };
-                        }
-                        
-                        const response = await fetch(this.config.claude.baseURL, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'x-api-key': this.config.claude.apiKey,
-                                'anthropic-version': '2023-06-01'
-                            },
-                            body: JSON.stringify({
-                                model: this.config.claude.model,
-                                max_tokens: 100,
-                                messages: [{
-                                    role: 'user',
-                                    content: '안녕하세요, 연결 테스트입니다.'
-                                }]
-                            })
-                        });
-                        
-                        return {
-                            success: response.ok,
-                            service: 'claude',
-                            message: response.ok ? 'Claude 연결 성공' : `Claude 연결 실패 (${response.status})`
-                        };
-                    }
-                    
-                } catch (error) {
-                    return {
-                        success: false,
-                        service: service,
-                        message: `연결 테스트 실패: ${error.message}`
-                    };
-                }
-            }
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    // ===== Scroll Reveal =====
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
         }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        // AI 서비스 인스턴스 생성
-        const AIService = new HairGatorAIService();
-        window.AIService = AIService;
+    // ===== Modal =====
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+      document.body.style.overflow = '';
+    }
 
-        // ===== API 키 설정 함수 =====
-        function setAPIKey(service) {
-            const input = document.getElementById(`${service}ApiKey`);
-            const statusSpan = document.getElementById(`${service}KeyStatus`);
-            
-            if (!input.value.trim()) {
-                alert(`${service.toUpperCase()} API 키를 입력해주세요.`);
-                return;
-            }
-            
-            if (window.AIService) {
-                window.AIService.setAPIKey(service, input.value);
-                statusSpan.textContent = '설정됨';
-                statusSpan.style.color = '#16a34a';
-                
-                input.value = '';
-                showNotification('success', 'API 키 설정', `${service.toUpperCase()} API 키가 설정되었습니다.`);
-            }
-        }
-        
-        // ===== 말투 학습 관련 함수 =====
-        function showWritingSampleModal() {
-            document.getElementById('writingSampleModal').style.display = 'flex';
-            
-            if (window.AIService) {
-                window.AIService.updateWritingSamplesUI();
-                updateLearningSummary();
-            }
-        }
-        
-        function closeWritingSampleModal() {
-            document.getElementById('writingSampleModal').style.display = 'none';
-            
-            document.getElementById('sampleTitle').value = '';
-            document.getElementById('sampleContent').value = '';
-            document.getElementById('sampleCategory').value = 'haircare';
-        }
-        
-        function addWritingSample() {
-            const title = document.getElementById('sampleTitle').value.trim();
-            const content = document.getElementById('sampleContent').value.trim();
-            const category = document.getElementById('sampleCategory').value;
-            
-            if (!title || !content) {
-                alert('제목과 내용을 모두 입력해주세요.');
-                return;
-            }
-            
-            if (content.length < 100) {
-                alert('학습 효과를 위해 최소 100자 이상의 내용을 입력해주세요.');
-                return;
-            }
-            
-            if (window.AIService) {
-                const sample = window.AIService.addWritingSample(title, content, category);
-                
-                if (sample) {
-                    showNotification('success', '말투 학습', '새로운 말투 샘플이 추가되었습니다.');
-                    updateLearningSummary();
-                    
-                    document.getElementById('sampleTitle').value = '';
-                    document.getElementById('sampleContent').value = '';
-                }
-            }
-        }
-        
-        function updateLearningSummary() {
-            if (!window.AIService) return;
-            
-            const sampleCount = window.AIService.writingStyle.samples.length;
-            const countElement = document.getElementById('learningSampleCount');
-            const summaryElement = document.getElementById('learnedStyleSummary');
-            
-            if (countElement) {
-                countElement.textContent = `${sampleCount}개 샘플`;
-            }
-            
-            if (summaryElement) {
-                if (sampleCount === 0) {
-                    summaryElement.textContent = '말투 학습을 위해 샘플을 추가해주세요';
-                } else if (sampleCount < 3) {
-                    summaryElement.textContent = `${sampleCount}개 샘플 추가됨. 정확한 분석을 위해 ${3 - sampleCount}개 더 추가해주세요.`;
-                } else {
-                    const style = window.AIService.writingStyle.analyzedStyle;
-                    summaryElement.innerHTML = `
-                        <strong>학습 완료!</strong><br>
-                        • 문장 길이: ${style.sentenceLength === 'long' ? '긴 문장 선호' : style.sentenceLength === 'short' ? '짧은 문장 선호' : '적당한 길이'}<br>
-                        • 톤: ${style.tone === 'friendly' ? '친근한 톤' : '전문적인 톤'}<br>
-                        • 어휘: ${style.vocabulary === 'professional' ? '전문적 어휘' : '일상적 어휘'}
-                    `;
-                }
-            }
-        }
-        
-        // ===== 참고 자료 관리 =====
-        function handlePdfUpload(input) {
-            const fileList = document.getElementById('pdfFileList');
-            const files = Array.from(input.files);
-            
-            files.forEach(file => {
-                if (file.type === 'application/pdf') {
-                    const fileItem = document.createElement('div');
-                    fileItem.className = 'file-item';
-                    fileItem.innerHTML = `
-                        <div class="file-name">
-                            <span>📄</span>
-                            <span>${file.name}</span>
-                        </div>
-                        <div class="file-info">
-                            <span class="file-size">${formatFileSize(file.size)}</span>
-                            <button class="remove-file-btn" onclick="removeFile(this)">삭제</button>
-                        </div>
-                    `;
-                    
-                    fileItem.dataset.fileName = file.name;
-                    fileItem.dataset.fileSize = file.size;
-                    
-                    fileList.appendChild(fileItem);
-                } else {
-                    showNotification('warning', '파일 형식 오류', 'PDF 파일만 업로드 가능합니다.');
-                }
-            });
-            
-            input.value = '';
-        }
-        
-        function removeFile(button) {
-            const fileItem = button.closest('.file-item');
-            fileItem.remove();
-        }
-        
-        function formatFileSize(bytes) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
-        }
-        
-        // ===== 탭 전환 =====
-        function switchTab(tabName) {
-            // 모든 탭 콘텐츠 숨기기
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // 모든 탭 버튼 비활성화
-            document.querySelectorAll('.editor-tab').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // 선택된 탭 활성화
-            document.getElementById(tabName + 'Tab').classList.add('active');
-            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
-        }
-        
-        // ===== 알림 시스템 =====
-        function showNotification(type, title, message) {
-            const container = document.getElementById('notificationContainer');
-            if (!container) return;
-            
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.innerHTML = `
-                <div style="font-weight: var(--font-weight-semibold); margin-bottom: 0.25rem;">${title}</div>
-                <div style="font-size: 0.875rem; color: var(--text-secondary);">${message}</div>
-            `;
-            
-            container.appendChild(notification);
-            
-            // 애니메이션
-            setTimeout(() => notification.classList.add('show'), 100);
-            
-            // 자동 제거
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => {
-                    if (notification.parentNode) {
-                        notification.parentNode.removeChild(notification);
-                    }
-                }, 300);
-            }, 3000);
-        }
-        
-        // ===== 더미 함수들 (실제 구현 필요) =====
-        function processNextInQueue() {
-            showNotification('info', '처리 중', 'AI가 다음 글을 작성하고 있습니다...');
-        }
-        
-        function showQueueManager() {
-            switchTab('queue');
-        }
-        
-        function addQuickContent() {
-            const target = document.getElementById('quickTarget').value.trim();
-            const title = document.getElementById('quickTitle').value.trim();
-            const keywords = document.getElementById('quickKeywords').value.trim();
-            
-            if (!target || !title || !keywords) {
-                showNotification('warning', '필수 정보 누락', '타겟 독자, 제목, 키워드를 모두 입력해주세요.');
-                return;
-            }
-            
-            showNotification('success', '글감 추가', '새로운 글감이 큐에 추가되었습니다.');
-            
-            // 폼 초기화
-            document.getElementById('quickTarget').value = '';
-            document.getElementById('quickTitle').value = '';
-            document.getElementById('quickKeywords').value = '';
-            document.getElementById('quickReferenceUrls').value = '';
-            document.getElementById('quickPersonalExperience').value = '';
-            document.getElementById('pdfFileList').innerHTML = '';
-        }
-        
-        function processAllQueue() {
-            showNotification('info', '전체 처리', '모든 글감을 순서대로 처리합니다...');
-        }
-        
-        function checkQuality() {
-            showNotification('info', '품질 검사', '콘텐츠 품질을 분석하고 있습니다...');
-        }
-        
-        function publishContent() {
-            showNotification('success', '발행 완료', '블로그 글이 성공적으로 발행되었습니다.');
-        }
-        
-        function toggleAutomation() {
-            const enabled = document.getElementById('automationEnabled').checked;
-            showNotification('info', '자동화 설정', enabled ? '자동화가 활성화되었습니다.' : '자동화가 비활성화되었습니다.');
-        }
-        
-        function startAutomation() {
-            showNotification('success', '자동화 시작', '블로그 자동화 시스템이 시작되었습니다.');
-        }
-        
-        // ===== 페이지 로드 시 초기화 =====
-        document.addEventListener('DOMContentLoaded', function() {
-            // 말투 학습 요약 업데이트
-            setTimeout(() => {
-                updateLearningSummary();
-            }, 1000);
-            
-            // API 연결 상태 초기화
-            if (window.AIService) {
-                document.getElementById('claudeStatus').textContent = '연결안됨';
-                document.getElementById('claudeStatus').style.color = '#dc2626';
-                document.getElementById('openaiStatus').textContent = '연결안됨';
-                document.getElementById('openaiStatus').style.color = '#dc2626';
-            }
-            
-            console.log('🎉 HAIRGATOR 시스템 로드 완료!');
-        });
-        
-        // 모달 외부 클릭시 닫기
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('modal')) {
-                e.target.style.display = 'none';
-            }
-        });
-        
-        console.log('🦄 HAIRGATOR -Blog Auto- 시스템 준비 완료!');
-    </script>
+    // ===== BOOKING SYSTEM =====
+    let bookingData = { counselor: '', date: null, time: '', type: '' };
+    let calYear = 2026, calMonth = 3; // April (0-indexed)
+
+    // Counselor selection
+    document.querySelectorAll('#counselorList input[name="counselor"]').forEach(input => {
+      input.addEventListener('change', function() {
+        bookingData.counselor = this.value;
+        document.getElementById('bookStep1Btn').disabled = false;
+        document.querySelectorAll('#counselorList .check-icon').forEach(ic => ic.style.opacity = '0');
+        this.closest('label').querySelector('.check-icon').style.opacity = '1';
+      });
+    });
+
+    function selectCounselor(name, imgKey) {
+      openModal('bookingModal');
+      const radio = document.querySelector(`#counselorList input[value="${name}"]`);
+      if (radio) {
+        radio.checked = true;
+        radio.dispatchEvent(new Event('change'));
+      }
+    }
+
+    // Session type selection
+    document.querySelectorAll('#sessionTypeList input[name="sessionType"]').forEach(input => {
+      input.addEventListener('change', function() {
+        bookingData.type = this.value;
+        document.getElementById('bookStep3Btn').disabled = false;
+      });
+    });
+
+    // Step navigation
+    function goBookStep(step) {
+      for (let i = 1; i <= 5; i++) {
+        document.getElementById('bookStep' + i).classList.add('hidden');
+      }
+      document.getElementById('bookStep' + step).classList.remove('hidden');
+      for (let i = 1; i <= 4; i++) {
+        const dot = document.getElementById('bookStep' + i + 'Dot');
+        if (dot) dot.className = 'w-8 h-1 rounded-full transition-all ' + (i <= step ? 'bg-sage-500' : 'bg-gray-200');
+      }
+      if (step === 2) renderCalendar();
+      if (step === 4) renderConfirmation();
+    }
+
+    // Calendar
+    function renderCalendar() {
+      const grid = document.getElementById('calendarGrid');
+      grid.innerHTML = '';
+      const monthLabel = document.getElementById('calendarMonth');
+      const monthNames = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+      monthLabel.textContent = calYear + '년 ' + monthNames[calMonth];
+
+      const firstDay = new Date(calYear, calMonth, 1).getDay();
+      const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+      const today = new Date();
+
+      for (let i = 0; i < firstDay; i++) {
+        grid.innerHTML += '<div></div>';
+      }
+      for (let d = 1; d <= daysInMonth; d++) {
+        const date = new Date(calYear, calMonth, d);
+        const isPast = date < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        const isSunday = date.getDay() === 0;
+        const isSelected = bookingData.date && bookingData.date.getTime() === date.getTime();
+        let cls = 'cal-day w-10 h-10 flex items-center justify-center mx-auto text-sm';
+        if (isPast || isSunday) cls += ' cal-disabled';
+        else if (isSelected) cls += ' cal-selected font-semibold';
+        grid.innerHTML += `<div class="${cls}" ${!isPast && !isSunday ? `onclick="selectDate(${calYear},${calMonth},${d})"` : ''}>${d}</div>`;
+      }
+    }
+
+    function changeMonth(dir) {
+      calMonth += dir;
+      if (calMonth > 11) { calMonth = 0; calYear++; }
+      if (calMonth < 0) { calMonth = 11; calYear--; }
+      renderCalendar();
+    }
+
+    function selectDate(y, m, d) {
+      bookingData.date = new Date(y, m, d);
+      bookingData.time = '';
+      document.getElementById('bookStep2Btn').disabled = true;
+      renderCalendar();
+      renderTimeSlots();
+    }
+
+    function renderTimeSlots() {
+      const container = document.getElementById('timeSlots');
+      const title = document.getElementById('timeSlotTitle');
+      title.style.display = 'block';
+      const slots = ['10:00','11:00','13:00','14:00','15:00','16:00','17:00','19:00','20:00'];
+      // Randomly disable some slots
+      const seed = bookingData.date.getDate();
+      container.innerHTML = slots.map((s, i) => {
+        const available = !((seed + i) % 3 === 0);
+        if (!available) return `<div class="time-slot px-3 py-2.5 rounded-xl border border-gray-100 text-center text-sm text-gray-300 cursor-not-allowed">
+          ${s}<div class="text-[10px]">마감</div></div>`;
+        const sel = bookingData.time === s ? ' selected' : '';
+        return `<div class="time-slot${sel} px-3 py-2.5 rounded-xl border border-gray-200 text-center text-sm font-medium" onclick="selectTime('${s}')">${s}</div>`;
+      }).join('');
+    }
+
+    function selectTime(t) {
+      bookingData.time = t;
+      document.getElementById('bookStep2Btn').disabled = false;
+      renderTimeSlots();
+    }
+
+    function renderConfirmation() {
+      document.getElementById('confirmCounselor').textContent = bookingData.counselor + ' 상담사';
+      const d = bookingData.date;
+      const days = ['일','월','화','수','목','금','토'];
+      document.getElementById('confirmDate').textContent = `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일 (${days[d.getDay()]})`;
+      document.getElementById('confirmTime').textContent = bookingData.time;
+      const typeMap = { video: '화상 상담', voice: '음성 상담', chat: '채팅 상담' };
+      document.getElementById('confirmType').textContent = typeMap[bookingData.type] || '-';
+    }
+
+    function confirmBooking() {
+      document.getElementById('doneCounselor').textContent = document.getElementById('confirmCounselor').textContent;
+      document.getElementById('doneDateTime').textContent = document.getElementById('confirmDate').textContent + ' ' + bookingData.time;
+      document.getElementById('doneType').textContent = document.getElementById('confirmType').textContent;
+      goBookStep(5);
+      // Save to localStorage
+      const bookings = JSON.parse(localStorage.getItem('mindCounseling_bookings') || '[]');
+      bookings.push({ ...bookingData, date: bookingData.date.toISOString(), bookedAt: new Date().toISOString() });
+      localStorage.setItem('mindCounseling_bookings', JSON.stringify(bookings));
+    }
+
+    function resetBooking() {
+      bookingData = { counselor: '', date: null, time: '', type: '' };
+      document.querySelectorAll('#counselorList input').forEach(r => r.checked = false);
+      document.querySelectorAll('#counselorList .check-icon').forEach(ic => ic.style.opacity = '0');
+      document.querySelectorAll('#sessionTypeList input').forEach(r => r.checked = false);
+      document.getElementById('bookStep1Btn').disabled = true;
+      document.getElementById('bookStep2Btn').disabled = true;
+      document.getElementById('bookStep3Btn').disabled = true;
+      goBookStep(1);
+    }
+
+    // ===== AI CHAT =====
+    const chatResponses = [
+      "그런 마음이 드셨군요. 요즘 특별히 힘든 일이 있으셨나요?",
+      "충분히 그럴 수 있어요. 그런 감정을 느끼는 건 자연스러운 일이에요.",
+      "이야기해 주셔서 감사해요. 조금 더 자세히 들려주실 수 있나요?",
+      "많이 지치셨을 것 같아요. 스스로를 돌보는 시간도 필요해요.",
+      "그 상황에서 그런 감정을 느끼는 건 당연한 거예요. 혼자 감당하지 않아도 괜찮아요.",
+      "말씀해 주신 부분이 마음에 걸리시는군요. 어떤 부분이 가장 힘드세요?",
+      "지금 느끼시는 감정을 있는 그대로 인정해 주세요. 그것만으로도 큰 시작이에요.",
+      "그런 경험이 쌓이면 정말 지칠 수 있어요. 오늘 여기서 이야기 나눠주셔서 다행이에요.",
+    ];
+
+    function sendChat() {
+      const input = document.getElementById('chatInput');
+      const msg = input.value.trim();
+      if (!msg) return;
+
+      const container = document.getElementById('chatMessages');
+      container.innerHTML += `<div class="chat-bubble-user px-4 py-3 text-sm max-w-[85%] ml-auto">${escapeHtml(msg)}</div>`;
+      input.value = '';
+      container.scrollTop = container.scrollHeight;
+
+      // Typing indicator
+      const typing = document.createElement('div');
+      typing.className = 'chat-bubble-ai px-4 py-3 text-sm max-w-[85%] flex gap-1';
+      typing.innerHTML = '<span class="w-2 h-2 bg-sage-300 rounded-full animate-bounce" style="animation-delay:0ms"></span><span class="w-2 h-2 bg-sage-300 rounded-full animate-bounce" style="animation-delay:150ms"></span><span class="w-2 h-2 bg-sage-300 rounded-full animate-bounce" style="animation-delay:300ms"></span>';
+      container.appendChild(typing);
+      container.scrollTop = container.scrollHeight;
+
+      setTimeout(() => {
+        typing.remove();
+        const resp = chatResponses[Math.floor(Math.random() * chatResponses.length)];
+        container.innerHTML += `<div class="chat-bubble-ai px-4 py-3 text-sm max-w-[85%]">${resp}</div>`;
+        container.scrollTop = container.scrollHeight;
+      }, 1200 + Math.random() * 800);
+    }
+
+    function escapeHtml(text) {
+      const d = document.createElement('div');
+      d.textContent = text;
+      return d.innerHTML;
+    }
+
+    // ===== MOOD =====
+    let selectedMood = null;
+
+    function pickMood(btn, mood) {
+      selectedMood = mood;
+      document.querySelectorAll('#moodPicker .mood-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      document.getElementById('moodSaveBtn').disabled = false;
+    }
+
+    function saveMood() {
+      if (!selectedMood) return;
+      const moods = JSON.parse(localStorage.getItem('mindCounseling_moods') || '[]');
+      moods.push({
+        mood: selectedMood,
+        note: document.getElementById('moodNote').value.trim(),
+        timestamp: new Date().toISOString()
+      });
+      localStorage.setItem('mindCounseling_moods', JSON.stringify(moods));
+      selectedMood = null;
+      document.querySelectorAll('#moodPicker .mood-btn').forEach(b => b.classList.remove('selected'));
+      document.getElementById('moodNote').value = '';
+      document.getElementById('moodSaveBtn').disabled = true;
+      renderMoodHistory();
+    }
+
+    function renderMoodHistory() {
+      const moods = JSON.parse(localStorage.getItem('mindCounseling_moods') || '[]');
+      const container = document.getElementById('moodHistory');
+      if (moods.length === 0) { container.innerHTML = ''; return; }
+      const last7 = moods.slice(-7);
+      const emojiMap = { great: '&#128516;', okay: '&#128522;', neutral: '&#128528;', sad: '&#128546;', anxious: '&#128560;' };
+      container.innerHTML = `
+        <h4 class="text-sm font-semibold text-gray-700 mb-3">최근 기록</h4>
+        <div class="flex gap-2 justify-center">${last7.map(m => {
+          const d = new Date(m.timestamp);
+          return `<div class="text-center">
+            <div class="text-2xl">${emojiMap[m.mood] || '&#128528;'}</div>
+            <div class="text-[10px] text-gray-400">${d.getMonth()+1}/${d.getDate()}</div>
+          </div>`;
+        }).join('')}</div>`;
+    }
+
+    // ===== ASSESSMENT =====
+    const PHQ9 = [
+      "일 또는 여가 활동에 대한 흥미나 즐거움이 거의 없음",
+      "기분이 가라앉거나 우울하거나 희망이 없다고 느낌",
+      "잠들기 어렵거나 자꾸 깨어남, 또는 너무 많이 잠",
+      "피곤하거나 기력이 거의 없음",
+      "식욕이 줄거나 과식을 함",
+      "자신이 실패자라고 느끼거나 자신 또는 가족을 실망시켰다고 느낌",
+      "신문을 읽거나 TV를 보는 등의 일에 집중하기 어려움",
+      "다른 사람들이 알아챌 정도로 느리게 움직이거나 말함, 또는 반대로 평소보다 안절부절못하거나 들떠 있음",
+      "차라리 죽는 것이 낫겠다는 생각 또는 자해에 대한 생각"
+    ];
+    const GAD7 = [
+      "초조하거나 불안하거나 조마조마하게 느낌",
+      "걱정하는 것을 멈추거나 조절할 수 없음",
+      "여러 가지 것들에 대해 걱정을 너무 많이 함",
+      "편하게 있기가 어려움",
+      "너무 안절부절못해서 가만히 있기가 힘듦",
+      "쉽게 짜증이 나거나 화가 남",
+      "마치 끔찍한 일이 일어날 것처럼 두려움을 느낌"
+    ];
+
+    let assessState = { type: '', questions: [], current: 0, answers: [] };
+
+    function startAssessment(type) {
+      assessState.type = type;
+      assessState.questions = type === 'PHQ9' ? PHQ9 : GAD7;
+      assessState.current = 0;
+      assessState.answers = [];
+      document.getElementById('assessSelect').classList.add('hidden');
+      document.getElementById('assessQuestions').classList.remove('hidden');
+      document.getElementById('assessResult').classList.add('hidden');
+      document.getElementById('assessType').textContent = type === 'PHQ9' ? 'PHQ-9' : 'GAD-7';
+      document.getElementById('assessTitle').textContent = type === 'PHQ9' ? '우울 자가진단 (PHQ-9)' : '불안 자가진단 (GAD-7)';
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const q = assessState.questions;
+      const i = assessState.current;
+      document.getElementById('assessProgress').textContent = `질문 ${i+1}/${q.length}`;
+      document.getElementById('assessBar').style.width = ((i+1)/q.length*100) + '%';
+      document.getElementById('assessQuestion').textContent = q[i];
+    }
+
+    function answerAssess(score) {
+      assessState.answers.push(score);
+      assessState.current++;
+      if (assessState.current < assessState.questions.length) {
+        renderQuestion();
+      } else {
+        showAssessResult();
+      }
+    }
+
+    function showAssessResult() {
+      const total = assessState.answers.reduce((a, b) => a + b, 0);
+      const max = assessState.questions.length * 3;
+      document.getElementById('assessQuestions').classList.add('hidden');
+      document.getElementById('assessResult').classList.remove('hidden');
+
+      let severity, color, desc, advice;
+      if (assessState.type === 'PHQ9') {
+        if (total <= 4) { severity = '정상'; color = 'bg-sage-100'; desc = '현재 우울 증상이 거의 없는 상태입니다.'; advice = '지금처럼 건강한 마음 관리를 이어가세요. 감정 체크인으로 꾸준히 기록하면 더 좋아요.'; }
+        else if (total <= 9) { severity = '경미한 우울'; color = 'bg-amber-50'; desc = '가벼운 우울 증상이 있을 수 있습니다.'; advice = 'AI 상담으로 감정을 정리해 보세요. 증상이 지속되면 전문 상담을 권해드려요.'; }
+        else if (total <= 14) { severity = '중등도 우울'; color = 'bg-orange-50'; desc = '일상에 영향을 줄 수 있는 수준의 우울 증상입니다.'; advice = '전문 상담사와의 상담을 권장합니다. 마인드케어에서 바로 예약할 수 있어요.'; }
+        else if (total <= 19) { severity = '중증 우울'; color = 'bg-rose-50'; desc = '상당한 수준의 우울 증상이 감지되었습니다.'; advice = '가능한 빨리 전문 상담을 받으시길 권합니다. 지금 바로 예약하실 수 있어요.'; }
+        else { severity = '심한 우울'; color = 'bg-rose-100'; desc = '심각한 수준의 우울 증상이 감지되었습니다.'; advice = '즉시 전문가의 도움이 필요합니다. 자살예방상담전화 1393, 정신건강위기상담전화 1577-0199로 연락하실 수 있습니다.'; }
+      } else {
+        if (total <= 4) { severity = '정상'; color = 'bg-sage-100'; desc = '현재 불안 증상이 거의 없는 상태입니다.'; advice = '건강한 상태를 유지하고 계세요. 감정 체크인으로 꾸준히 관리해 보세요.'; }
+        else if (total <= 9) { severity = '경미한 불안'; color = 'bg-amber-50'; desc = '가벼운 불안 증상이 있을 수 있습니다.'; advice = 'AI 상담에서 불안에 대해 이야기해 보세요. 호흡 운동도 도움이 됩니다.'; }
+        else if (total <= 14) { severity = '중등도 불안'; color = 'bg-orange-50'; desc = '일상에 영향을 줄 수 있는 수준의 불안입니다.'; advice = '전문 상담사와의 상담을 권장합니다. 마인드케어에서 바로 예약하세요.'; }
+        else { severity = '심한 불안'; color = 'bg-rose-50'; desc = '상당한 수준의 불안 증상이 감지되었습니다.'; advice = '전문 상담을 받으시길 강력히 권합니다. 지금 바로 예약하실 수 있어요.'; }
+      }
+
+      document.getElementById('assessResultIcon').className = `w-20 h-20 rounded-full ${color} flex items-center justify-center mx-auto mb-4`;
+      document.getElementById('assessResultIcon').innerHTML = `<iconify-icon icon="solar:clipboard-check-bold" class="text-3xl ${color === 'bg-sage-100' ? 'text-sage-600' : color === 'bg-amber-50' ? 'text-amber-500' : 'text-rose-500'}"></iconify-icon>`;
+      document.getElementById('assessResultTitle').textContent = severity;
+      document.getElementById('assessResultScore').textContent = `총점: ${total}/${max}`;
+      document.getElementById('assessResultDesc').textContent = desc;
+      document.getElementById('assessResultAdvice').innerHTML = `<iconify-icon icon="solar:lightbulb-bolt-bold" class="align-middle mr-1"></iconify-icon>${advice}`;
+
+      // Save
+      const results = JSON.parse(localStorage.getItem('mindCounseling_assessments') || '[]');
+      results.push({ type: assessState.type, answers: assessState.answers, total, severity, timestamp: new Date().toISOString() });
+      localStorage.setItem('mindCounseling_assessments', JSON.stringify(results));
+    }
+
+    function resetAssessment() {
+      assessState = { type: '', questions: [], current: 0, answers: [] };
+      document.getElementById('assessSelect').classList.remove('hidden');
+      document.getElementById('assessQuestions').classList.add('hidden');
+      document.getElementById('assessResult').classList.add('hidden');
+      document.getElementById('assessTitle').textContent = '심리검사 선택';
+    }
+
+    // ===== Init =====
+    renderMoodHistory();
+  </script>
 </body>
 </html>
